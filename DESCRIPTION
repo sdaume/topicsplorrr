@@ -1,0 +1,16 @@
+Package: topicsplorrr
+Title: A Package Supporting Topical Text Analysis, Exploration and Visualization 
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Stefan", "Daume", email = "stefan.daume@ecoveillance.org", 
+            role = c("cre", "aut")))
+Description: The package provides functions to analyse and visualize the results
+    of an STM topic model, including a Shiny application for topic model 
+    exploration.
+URL: https://sdaume.github.io/topicsplorrr/, https://github.com/sdaume/topicsplorrr
+BugReports: https://github.com/sdaume/topicsplorrr/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
