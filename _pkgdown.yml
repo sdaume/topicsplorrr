@@ -1,0 +1,9 @@
+destination: docs
+
+template:
+  params:
+    bootswatch: paper
+
+authors:
+   Stefan Daume:
+     href: https://github.com/sdaume
