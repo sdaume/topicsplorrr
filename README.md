@@ -7,6 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build
+status](https://github.com/sdaume/topicsplorrr/workflows/R-CMD-check/badge.svg)](https://github.com/sdaume/topicsplorrr/actions)
 <!-- badges: end -->
 
 The package provides functions to analyse and visualize the results of
