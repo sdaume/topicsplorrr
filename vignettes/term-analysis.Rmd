@@ -1,0 +1,62 @@
+---
+title: "Simple analysis of term frequencies"
+output: 
+  tufte::tufte_html:
+    tufte_variant: envisioned
+    toc: true
+    css: vignette.css
+    margin_references: false
+vignette: >
+  %\VignetteIndexEntry{Simple analysis of term frequencies}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  collapse = TRUE,
+  cache = FALSE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(topicsplorrr)
+```
+
+
+## "Naive" topic analysis
+
+The package primarily supports provides functions to analyze and visualize the results of an `stm` topical model, but includes also functions to explore simple term trends in a text corpus. This can be thought of as a first "naive" topical analysis and is a useful initial exploration of a text collection.
+
+All examples in the following sections are using a snapshot of the [*'SARS-CoV-2 COVID-19'* preprint collection](https://connect.medrxiv.org/relate/content/181) on [medrXiv](https://www.medrxiv.org/) and [biorXiv](https://www.biorxiv.org/); this data is available via the [`covid19topics` package](https://github.com/sdaume/covid19topics) which has been setup for a topical analysis.
+
+For the following analyses common English stop words were typically removed from the source texts, as are numbers and words were ["stemmed"](https://en.wikipedia.org/wiki/Stemming)^[I.e. all words are reduced to their word stem and words like *"model", "models", "modelling", "modeling"* are transformed to the word stem *"model"*].  
+
+The following table utilizes the package's `term_counts()` function to list the most frequent terms in the analyzed preprint titles.
+
+
+```{r echo=TRUE}
+library(topicsplorrr)
+library(dplyr)
+
+# extract unigrams
+processed_terms <- unigrams_by_date(textData = covid19topics::covid19preprints, 
+                                    textColumn = "title", 
+                                    dateColumn = "pub_date")
+
+# and compute term shares
+top_title_terms <- term_counts(processed_terms) %>%
+  slice(1:10) %>%
+  mutate(term_share = term_share*100)
+
+top_title_terms %>% 
+  kableExtra::kbl(format = "html", 
+                  caption = "Most frequent terms in Covid19 preprint titles",
+                  col.names = c("Term", "N", "%"),
+                  digits = c(0,0,2)) 
+```
+

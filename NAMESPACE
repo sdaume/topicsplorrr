@@ -2,6 +2,7 @@
 
 export("%>%")
 export(bigrams_by_date)
+export(term_counts)
 export(terms_by_date)
 export(terms_dfm)
 export(unigrams_by_date)
