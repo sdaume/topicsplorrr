@@ -6,7 +6,7 @@
 \usage{
 terms_dfm(textData, textColumn, documentIdColumn,
   removeStopwords = FALSE, removeNumbers = FALSE,
-  wordStemming = FALSE, customStopwords = c())
+  wordStemming = FALSE, customStopwords = NULL)
 }
 \arguments{
 \item{textData}{a dataframe containing the text to be processed, with each

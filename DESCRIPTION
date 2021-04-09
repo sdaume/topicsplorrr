@@ -20,7 +20,12 @@ Imports:
     tidytext,
     SnowballC,
     stringr,
-    tidyr
+    tidyr,
+    ggplot2,
+    stats,
+    lubridate,
+    scales,
+    rlang
 Suggests: 
     knitr,
     rmarkdown

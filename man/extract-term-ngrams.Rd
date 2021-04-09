@@ -7,26 +7,24 @@
 \alias{bigrams_by_date}
 \title{Split a text source into tokens and terms by date of occurrence}
 \usage{
-terms_by_date(..., tokenType = "unigram")
+terms_by_date(textData, textColumn, dateColumn, removeNumbers = TRUE,
+  wordStemming = TRUE, customStopwords = NULL, tokenType = "unigram")
 
 unigrams_by_date(textData, textColumn, dateColumn, removeNumbers = TRUE,
-  wordStemming = TRUE, customStopwords = c())
+  wordStemming = TRUE, customStopwords = NULL)
 
 bigrams_by_date(textData, textColumn, dateColumn, removeNumbers = TRUE,
-  wordStemming = TRUE, customStopwords = c())
+  wordStemming = TRUE, customStopwords = NULL)
 }
 \arguments{
-\item{tokenType}{the length of the consecutive token sequence extracted,
-currently only \code{bigram} (two word sequence) and \code{unigram} (single
-words) are supported, with \strong{\code{unigram} as default}}
-
 \item{textData}{a dataframe containing the text to be processed}
 
-\item{textColumn}{the column name in \code{textData} containing the text to
-be processed}
+\item{textColumn}{a character string specifying the column name in
+\code{textData} containing the text to be processed}
 
-\item{dateColumn}{the column name in \code{textData} specifying a publication
-date for the text in \code{textColumn}}
+\item{dateColumn}{a character string specifying the column name in
+\code{textData} specifying a publication date for the text in
+\code{textColumn}}
 
 \item{removeNumbers}{a Boolean indicating whether numbers should be removed
 from the result; default is \strong{TRUE}.}
@@ -36,6 +34,10 @@ reduced to the word stem; default is \strong{TRUE}.}
 
 \item{customStopwords}{a character vector specifying additional stopwords
 that should be removed from the result}
+
+\item{tokenType}{the length of the consecutive token sequence extracted,
+currently only \code{bigram} (two word sequence) and \code{unigram} (single
+words) are supported, with \strong{\code{unigram} as default}}
 }
 \value{
 a dataframe with three columns listing all individual term

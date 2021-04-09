@@ -60,3 +60,22 @@ top_title_terms %>%
                   digits = c(0,0,2)) 
 ```
 
+
+
+## Term trends
+
+The variation of term shares over time can be the next step in exploring the basic "topical" trends in a text collection. The following code extracts the bigram term counts in the titles of  [*'SARS-CoV-2 COVID-19'* preprints](https://connect.medrxiv.org/relate/content/181) and then plots the weekly shares for the 25 most frequent bigrams. 
+
+The code below utilizes the package's `plot_term_frequencies()` function. A linear trend line is added as a simple visual aid to distinguish terms with increasing, decreasing or stable trends. The example shows monthly shares of *bigrams* and demonstrates some additional options such as specifying additional stop words (here the most common terms in the preprint titles).
+
+
+```{r, fig.width=7, fig.height=7, dpi=200}
+library(topicsplorrr)
+
+terms_by_date(textData = covid19topics::covid19preprints,
+              textColumn = "title", 
+              dateColumn = "pub_date",
+              customStopwords = c("sars", "cov", "covid", "coronavirus", "virus"),
+              tokenType = "bigram") %>%
+  plot_term_frequencies(timeBinUnit = "month", topN = 16, nCols = 4)
+```
