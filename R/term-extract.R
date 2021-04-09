@@ -147,3 +147,95 @@ bigrams_by_date <- function(textData, textColumn, dateColumn,
 }
 
 
+
+
+
+#' Create a document-feature-matrix from a text source
+#'
+#' \code{terms_dfm} takes a text source with text objects associated with unique
+#' document identifiers and creates a document-feature-matrix, which can be used
+#' as input for an \code{\link[stm:stm]{stm}} topic modeller.
+#'
+#' Text input (\code{textColumn}) is split with a \emph{word tokenizer} and
+#' tokens are further processed and filtered according to the function's
+#' options. Since the result is primarily intended as input for a topic
+#' modeller, stopwords (see \code{\link[tidytext:stop_words]{tidytext}}) are
+#' \strong{not} removed by default.
+#'
+#' @param textData a dataframe containing the text to be processed, with each
+#'   row representing a distinct document
+#'
+#' @param textColumn the column name in \code{textData} containing the text to
+#'   be processed
+#'
+#' @param documentIdColumn the column name in \code{textData} specifying a
+#'   unique identifier for the document with the content given in
+#'   \code{textColumn}
+#'
+#' @param removeStopwords a Boolean indicating whether standard stopwords (see
+#'   \code{\link[tidytext:stop_words]{tidytext}}) should be removed from the
+#'   result; default is \strong{FALSE}.
+#'
+#' @param removeNumbers a Boolean indicating whether numbers should be removed
+#'   from the result; default is \strong{FALSE}. If \strong{TRUE}, a the Porter
+#'   stemmer from the \code{\link[SnowballC:wordStem]{SnowballC package}} is
+#'   applied.
+#'
+#' @param wordStemming a Boolean indicating whether words in the text should be
+#'   reduced to the word stem; default is \strong{FALSE}.
+#'
+#' @param customStopwords a character vector specifying additional stopwords
+#'   that should be removed from the result
+#'
+#' @return a \emph{document-feature-matrix} of type
+#'   \code{\link[quanteda:dfm]{quanteda::dfm}} (similar to a
+#'   document-term-matrix), where a \emph{document} is identified by the value
+#'   in the \code{documentIdColumn} specified in the text source (i.e.
+#'   \code{textData}), and a \emph{feature} or \emph{term} is a character
+#'   sequence obtained after tokenization and all other NLP processing options
+#'   have been applied to the text associated with a document.
+#'
+#' @export
+#'
+terms_dfm <- function(textData, textColumn, documentIdColumn,
+                      removeStopwords = FALSE,
+                      removeNumbers = FALSE, wordStemming = FALSE,
+                      customStopwords = c()) {
+
+  # We will use our custom approach (as in terms_by_date()) for text processing
+  # and preparation and then map this to a document-feature-matrix (quanteda::dfm)
+  # as input for topic modelling. It might be useful to use extended features of
+  # a `dfm` later, thus by using `dfm` it will be easy to refactor this function
+  # without breaking the rest of our topic modelling workflow.
+
+  # 'stemLanguage' can be turned into a function argument if we want to use this
+  # for texts in other languages
+  stemLanguage <- "en"
+
+  textObj <- dplyr::sym(textColumn)
+  docIdObj <- dplyr::sym(documentIdColumn)
+
+  terms_by_document <- textData %>%
+    dplyr::select(!!textObj, !!docIdObj) %>%
+    tidytext::unnest_tokens(output = token,
+                            input = !!textObj,
+                            drop = TRUE) %>%
+    {if(removeStopwords)
+      dplyr::anti_join(., tidytext::stop_words, by = c("token" = "word"))
+      else .} %>%
+    dplyr::filter(!(token %in% customStopwords)) %>%
+    {if(removeNumbers)
+      dplyr::filter(., !stringr::str_detect(token,
+                                            "^-?\\d+(,\\d+)*(\\.\\d+(e\\d+)?)?$"))
+      else .} %>%
+    dplyr::mutate(term = token) %>%
+    {if(wordStemming)
+      dplyr::mutate(., term = SnowballC::wordStem(token, language = stemLanguage))
+      else .}
+
+  terms_by_document <- terms_by_document %>%
+    dplyr::count(!!docIdObj, term, sort = TRUE) %>%
+    tidytext::cast_dfm(!!docIdObj, term, n)
+
+  return(terms_by_document)
+}
