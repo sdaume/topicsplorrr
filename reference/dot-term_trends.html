@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MIT License • topicsplorrr</title>
+<title>Fit a linear regression to time frequency series of term shares — .term_trends • topicsplorrr</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script>
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,15 +33,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script>
 
 
 
-  <link href="extra.css" rel="stylesheet">
+  <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="MIT License" />
+<meta property="og:title" content="Fit a linear regression to time frequency series of term shares — .term_trends" />
+<meta property="og:description" content=".term_trends takes a dataframe with term frequency time series as
+returned by the term_frequencies() function and fits a linear
+regression for each term." />
 
 
 
@@ -60,7 +63,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -72,7 +75,7 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">topicsplorrr</a>
+        <a class="navbar-link" href="../index.html">topicsplorrr</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
@@ -80,13 +83,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -96,7 +99,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/term-analysis.html">Simple analysis of term frequencies</a>
+      <a href="../articles/term-analysis.html">Simple analysis of term frequencies</a>
     </li>
   </ul>
 </li>
@@ -119,29 +122,67 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>MIT License</h1>
+    <h1>Fit a linear regression to time frequency series of term shares</h1>
+    <small class="dont-index">Source: <a href='https://github.com/sdaume/topicsplorrr/blob/master/R/term-analysis.R'><code>R/term-analysis.R</code></a></small>
+    <div class="hidden name"><code>dot-term_trends.Rd</code></div>
     </div>
 
-<div id="mit-license" class="section level1">
+    <div class="ref-description">
+    <p><code>.term_trends</code> takes a dataframe with term frequency time series as
+returned by the <code><a href='term_frequencies.html'>term_frequencies()</a></code> function and fits a linear
+regression for each <code>term</code>.</p>
+    </div>
 
-<p>Copyright (c) 2021 Stefan Daume</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-</div>
+    <pre class="usage"><span class='fu'>.term_trends</span><span class='op'>(</span><span class='va'>termFrequencies</span>, trendThreshold <span class='op'>=</span> <span class='fl'>5e-04</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>termFrequencies</th>
+      <td><p>a dataframe of <code>term</code> frequencies as returned by
+<code><a href='term_frequencies.html'>term_frequencies()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>trendThreshold</th>
+      <td><p>a double used to categorise trends, default is
+<code>0.0005</code>; if the intercept of the linear model of term frequencies
+falls within a range of <code>+/-trendThreshold</code> of the mean term share,
+the trend is categorized as <em>"constant"</em></p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a dataframe specifying trend metrics for each <code>term</code>, where:</p><dl>
+<dt>term</dt><dd><p>a unique term</p></dd> <dt>slope</dt><dd><p>the slope
+coefficient of the linear model fit to this <code>term</code>'s time frequency
+series</p></dd> <dt>volatility</dt><dd><p>the residual standard deviation of the linear
+model fit to this <code>term</code>'s time frequency series, which is used as a
+basic measure of volatility of term frequencies</p></dd> <dt>trend</dt><dd><p>a
+categorisation of the term frequency trend, negative slopes with an
+intercept <code>&gt; mean term share + trendThreshold</code> are interpreted as
+<em>decreasing</em>, positive slopes with an intercept <code>&lt; mean term
+  share - trendThreshold</code> as <em>increasing</em>, all others as
+<em>constant</em></p></dd> 
+</dl>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The primary purpose of this function is to provide a simple approach to
+identify <code>term</code> trends, which can be used for visualization, filtering
+and exploratory analysis. Internally, the slope and intercept of the fitted
+linear model are use to categorize a basic trend for the term frequencies.</p>
 
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
-
 
 
       <footer>

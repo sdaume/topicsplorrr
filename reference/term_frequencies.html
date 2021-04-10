@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • topicsplorrr</title>
+<title>Compute the frequency of terms within in a chosen time period — term_frequencies • topicsplorrr</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Compute the frequency of terms within in a chosen time period — term_frequencies" />
+<meta property="og:description" content="term_frequencies summarizes the counts and relative frequency of terms
+in a chosen timebin for a given collection of terms with date of occurrence." />
 
 
 
@@ -60,7 +62,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -119,85 +121,83 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Compute the frequency of terms within in a chosen time period</h1>
+    <small class="dont-index">Source: <a href='https://github.com/sdaume/topicsplorrr/blob/master/R/term-analysis.R'><code>R/term-analysis.R</code></a></small>
+    <div class="hidden name"><code>term_frequencies.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p><code>term_frequencies</code> summarizes the counts and relative frequency of terms
+in a chosen timebin for a given collection of terms with date of occurrence.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>term_frequencies</span><span class='op'>(</span><span class='va'>termsByDate</span>, timeBinUnit <span class='op'>=</span> <span class='st'>"week"</span>,
+  minTermTimeBins <span class='op'>=</span> <span class='fl'>0.5</span>, minTermOccurences <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="extract-term-ngrams.html">terms_by_date()</a></code> <code><a href="extract-term-ngrams.html">unigrams_by_date()</a></code> <code><a href="extract-term-ngrams.html">bigrams_by_date()</a></code> </p>
-        </td>
-        <td><p>Split a text source into tokens and terms by date of occurrence</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_term_frequencies.html">plot_term_frequencies()</a></code> </p>
-        </td>
-        <td><p>Plot individual term frequencies by date in a faceted plot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="select_top_terms.html">select_top_terms()</a></code> </p>
-        </td>
-        <td><p>Select top terms by count, trend metric and/or name pattern</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="term_counts.html">term_counts()</a></code> </p>
-        </td>
-        <td><p>Count unique terms in a text source</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="term_frequencies.html">term_frequencies()</a></code> </p>
-        </td>
-        <td><p>Compute the frequency of terms within in a chosen time period</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="terms_dfm.html">terms_dfm()</a></code> </p>
-        </td>
-        <td><p>Create a document-feature-matrix from a text source</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="terms_tokens_map.html">terms_tokens_map()</a></code> </p>
-        </td>
-        <td><p>Summarize mappings between terms and tokens from a text source</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="topicsplorrr.html">topicsplorrr</a></code> </p>
-        </td>
-        <td><p>topicsplorrr: A Package Supporting Topical Text Analysis, Exploration and
-Visualization</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>termsByDate</th>
+      <td><p>a dataframe as returned by <code><a href='extract-term-ngrams.html'>terms_by_date</a></code></p></td>
+    </tr>
+    <tr>
+      <th>timeBinUnit</th>
+      <td><p>a character sequence specifying the time period that
+should be used as a bin unit when computing term frequencies. Valid values
+are <code>"day", "week", "month", "quarter", "year"</code>, but for the text
+sources processed in this package <code>"week"</code> is recommended and used as
+a default. <strong>NOTE:</strong> for the assignment of <code>week</code>s Monday is
+considered as the first day of the week.</p></td>
+    </tr>
+    <tr>
+      <th>minTermTimeBins</th>
+      <td><p>a double in the range <code>[0,1]</code> specifying the
+minimum share of all unique timebins in which an occurrence of a term must
+have been recorded, i.e. a value of <code>0.5</code> (the default) requires that
+an occurrence of a term must have been recorded in at least 50% of all
+unique timebins covered by the dataset; terms that do not meet this
+threshold will not be included in the returned results.</p></td>
+    </tr>
+    <tr>
+      <th>minTermOccurences</th>
+      <td><p>an integer specifying the minimum of total
+occurrences of a term to be included in the results; terms that do not meet
+this threshold will not be included in the returned results.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a dataframe with term frequencies by chosen timebin, where:</p><dl>
+<dt>term</dt><dd><p>a term as provided as an input in
+<code>termsByDate</code></p></dd> <dt>timebin</dt><dd><p>the first day of the a timebin; if
+<code>timeBinUnit</code> was set to <code>week</code>, this date will always be a
+Monday</p></dd> <dt>n_term_per_timebin</dt><dd><p>the number of occurrences of <code>term</code>
+in <code>timebin</code></p></dd> <dt>first_occur</dt><dd><p>the exact date of the first
+occurrence of <code>term</code> across the whole time range covered by
+<code>timebin</code>s</p></dd> <dt>latest_occur</dt><dd><p>the exact date of the latest
+occurrence of <code>term</code> across the whole time range covered by
+<code>timebin</code>s; note that this date can be larger than the maximum
+<code>timebin</code>, as <code>timebin</code> specifies the floor date of a time unit</p></dd>
+<dt>term_share_per_timebin</dt><dd><p>the share of <code>term</code> in a given
+<code>timebin</code> with respect to all other term occurrences in a
+<code>timebin</code>; <strong>NOTE</strong> that this is computed in consideration of all
+terms, including those that may be filtered out of the results</p></dd>
+<dt>n_term_total</dt><dd><p>the total number of occurrences in the dataset, i.e.
+across all <code>timebin</code>s</p></dd> <dt>n_term_timebins</dt><dd><p>the number of unique
+<code>timebin</code>s in which an occurrence of <code>term</code> was recorded</p></dd> 
+</dl>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Timebins for which no occurrence of a given term is recorded are added with
+an explicit value of zero, excluding however such empty timebins before the
+first occurrence of a term and after the last.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

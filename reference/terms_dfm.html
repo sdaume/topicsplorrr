@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • topicsplorrr</title>
+<title>Create a document-feature-matrix from a text source — terms_dfm • topicsplorrr</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Create a document-feature-matrix from a text source — terms_dfm" />
+<meta property="og:description" content="terms_dfm takes a text source with text objects associated with unique
+document identifiers and creates a document-feature-matrix, which can be used
+as input for an stm topic modeller." />
 
 
 
@@ -60,7 +63,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -119,85 +122,85 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Create a document-feature-matrix from a text source</h1>
+    <small class="dont-index">Source: <a href='https://github.com/sdaume/topicsplorrr/blob/master/R/term-extract.R'><code>R/term-extract.R</code></a></small>
+    <div class="hidden name"><code>terms_dfm.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p><code>terms_dfm</code> takes a text source with text objects associated with unique
+document identifiers and creates a document-feature-matrix, which can be used
+as input for an <code>stm</code> topic modeller.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>terms_dfm</span><span class='op'>(</span><span class='va'>textData</span>, <span class='va'>textColumn</span>, <span class='va'>documentIdColumn</span>,
+  removeStopwords <span class='op'>=</span> <span class='cn'>FALSE</span>, removeNumbers <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  wordStemming <span class='op'>=</span> <span class='cn'>FALSE</span>, customStopwords <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="extract-term-ngrams.html">terms_by_date()</a></code> <code><a href="extract-term-ngrams.html">unigrams_by_date()</a></code> <code><a href="extract-term-ngrams.html">bigrams_by_date()</a></code> </p>
-        </td>
-        <td><p>Split a text source into tokens and terms by date of occurrence</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_term_frequencies.html">plot_term_frequencies()</a></code> </p>
-        </td>
-        <td><p>Plot individual term frequencies by date in a faceted plot</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="select_top_terms.html">select_top_terms()</a></code> </p>
-        </td>
-        <td><p>Select top terms by count, trend metric and/or name pattern</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="term_counts.html">term_counts()</a></code> </p>
-        </td>
-        <td><p>Count unique terms in a text source</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="term_frequencies.html">term_frequencies()</a></code> </p>
-        </td>
-        <td><p>Compute the frequency of terms within in a chosen time period</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="terms_dfm.html">terms_dfm()</a></code> </p>
-        </td>
-        <td><p>Create a document-feature-matrix from a text source</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="terms_tokens_map.html">terms_tokens_map()</a></code> </p>
-        </td>
-        <td><p>Summarize mappings between terms and tokens from a text source</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="topicsplorrr.html">topicsplorrr</a></code> </p>
-        </td>
-        <td><p>topicsplorrr: A Package Supporting Topical Text Analysis, Exploration and
-Visualization</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>textData</th>
+      <td><p>a dataframe containing the text to be processed, with each
+row representing a distinct document</p></td>
+    </tr>
+    <tr>
+      <th>textColumn</th>
+      <td><p>the column name in <code>textData</code> containing the text to
+be processed</p></td>
+    </tr>
+    <tr>
+      <th>documentIdColumn</th>
+      <td><p>the column name in <code>textData</code> specifying a
+unique identifier for the document with the content given in
+<code>textColumn</code></p></td>
+    </tr>
+    <tr>
+      <th>removeStopwords</th>
+      <td><p>a Boolean indicating whether standard stopwords (see
+<code><a href='https://rdrr.io/pkg/tidytext/man/stop_words.html'>tidytext</a></code>) should be removed from the
+result; default is <strong>FALSE</strong>.</p></td>
+    </tr>
+    <tr>
+      <th>removeNumbers</th>
+      <td><p>a Boolean indicating whether numbers should be removed
+from the result; default is <strong>FALSE</strong>. If <strong>TRUE</strong>, a the Porter
+stemmer from the <code><a href='https://rdrr.io/pkg/SnowballC/man/wordStem.html'>SnowballC package</a></code> is
+applied.</p></td>
+    </tr>
+    <tr>
+      <th>wordStemming</th>
+      <td><p>a Boolean indicating whether words in the text should be
+reduced to the word stem; default is <strong>FALSE</strong>.</p></td>
+    </tr>
+    <tr>
+      <th>customStopwords</th>
+      <td><p>a character vector specifying additional stopwords
+that should be removed from the result</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a <em>document-feature-matrix</em> of type
+<code>quanteda::dfm</code> (similar to a
+document-term-matrix), where a <em>document</em> is identified by the value
+in the <code>documentIdColumn</code> specified in the text source (i.e.
+<code>textData</code>), and a <em>feature</em> or <em>term</em> is a character
+sequence obtained after tokenization and all other NLP processing options
+have been applied to the text associated with a document.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Text input (<code>textColumn</code>) is split with a <em>word tokenizer</em> and
+tokens are further processed and filtered according to the function's
+options. Since the result is primarily intended as input for a topic
+modeller, stopwords (see <code><a href='https://rdrr.io/pkg/tidytext/man/stop_words.html'>tidytext</a></code>) are
+<strong>not</strong> removed by default.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
