@@ -29,5 +29,8 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    kableExtra
+    kableExtra,
+    covid19topics
 VignetteBuilder: knitr
+Remotes:
+    sdaume/covid19topics

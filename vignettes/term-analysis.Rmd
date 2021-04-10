@@ -36,7 +36,7 @@ For the following analyses common English stop words were typically removed from
 The following table utilizes the package's `term_counts()` function to list the most frequent terms in the analyzed preprint titles.
 
 
-```{r echo=TRUE, eval=FALSE}
+```{r echo=TRUE}
 library(topicsplorrr)
 library(dplyr)
 
@@ -77,22 +77,3 @@ terms_by_date(textData = covid19topics::covid19preprints,
   plot_term_frequencies(timeBinUnit = "month", topN = 16, nCols = 4)
 ```
 
-
-
-## Sandbox
-```{r echo=TRUE, eval=FALSE}
-library(topicsplorrr)
-library(dplyr)
-
-# extract unigrams
-processed_terms <- bigrams_by_date(textData = covid19topics::covid19preprints, 
-                                    textColumn = "title", 
-                                    dateColumn = "pub_date")
-
-termfreqs <- term_frequencies(processed_terms, timeBinUnit = "month")
-
-topterms <- select_top_terms(termfreqs)
-
-termfreqs <- dplyr::arrange(termfreqs, term_share_per_timebin)
-
-```
