@@ -176,10 +176,14 @@ term_frequencies <- function(termsByDate, timeBinUnit = "week",
   # first occurrence of a term, AND after the latest!
   if (nrow(term_freqs) > 1) {
     term_freqs <- term_freqs %>%
-      tidyr::complete(tidyr::crossing(term,
-                                      timebin = seq.Date(min(timebin),
-                                                         max(timebin),
-                                                         by = timeBinUnit))) %>%
+      tidyr::complete(.data$term,
+                      timebin = seq.Date(min(.data$timebin),
+                                         max(.data$timebin),
+                                         by = timeBinUnit)) %>%
+      #tidyr::complete(tidyr::crossing(term,
+      #                                timebin = seq.Date(min(timebin),
+      #                                                   max(timebin),
+      #                                                   by = timeBinUnit))) %>%
       tidyr::replace_na(list(n_term_per_timebin = 0,
                              term_share_per_timebin = 0)) %>%
       dplyr::group_by(.data$term) %>%
@@ -299,12 +303,19 @@ select_top_terms <- function(termFrequencies, topN = 25,
 
   # first we select according to the chosen metric (specified in 'selectBy')
   top_n_terms <- top_n_terms %>%
-    merge(term_trends_lm, by = "term") %>%
-    {if(selectBy == "most_volatile") dplyr::arrange(., -.data$volatility) else .} %>%
-    {if(selectBy == "trending") dplyr::arrange(., -abs(.data$slope)) else .} %>%
-    {if(selectBy == "trending_up") dplyr::arrange(., -.data$slope) else .} %>%
-    {if(selectBy == "trending_down") dplyr::arrange(., .data$slope) else .} %>%
-    dplyr::slice(1:topN)
+    merge(term_trends_lm, by = "term")
+
+  if(selectBy == "most_volatile") {
+    top_n_terms <- dplyr::arrange(top_n_terms, -.data$volatility)
+  } else if(selectBy == "trending") {
+    top_n_terms <- dplyr::arrange(top_n_terms, -abs(.data$slope))
+  } else if(selectBy == "trending_up") {
+    top_n_terms <- dplyr::arrange(top_n_terms, -.data$slope)
+  } else if(selectBy == "trending_down") {
+    top_n_terms <- dplyr::arrange(top_n_terms, .data$slope)
+  }
+
+  top_n_terms <- dplyr::slice(top_n_terms, 1:topN)
 
   return(top_n_terms)
 }

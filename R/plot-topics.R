@@ -32,7 +32,7 @@
 #' @param topN the number of displayed top terms meeting the selection criteria
 #'   in \code{selectBy}
 #'
-#' @param selectBy the selection approach which determines the metric by which
+#' @param selectTermsBy the selection approach which determines the metric by which
 #'   \code{term}s will be sorted to select the \code{topN} terms. Currently, the
 #'   following options are supported: \describe{
 #'   \item{most_frequent}{\strong{the default}, select terms based on the total
@@ -133,10 +133,13 @@ plot_term_frequencies <- function(termsByDate, timeBinUnit = "week",
       dplyr::mutate(term_label = .data$term)
   }
 
-  ggplot2::ggplot(terms_to_plot, ggplot2::aes(x = timebin, y = term_share_per_timebin, group = term)) +
+  ggplot2::ggplot(terms_to_plot,
+                  ggplot2::aes_string(x = "timebin",
+                                      y = "term_share_per_timebin",
+                                      group = "term")) +
     ggplot2::geom_line(show.legend = FALSE, colour = "#bdbdbd") +
     ggplot2::geom_smooth(method = stats::lm, se = FALSE, formula = y ~ x,
-                         ggplot2::aes(colour = trend),
+                         ggplot2::aes_string(colour = "trend"),
                          show.legend = FALSE) +
     ggplot2::scale_y_continuous(limits = c(0, NA),
                                 expand = c(0, 0),
@@ -149,16 +152,17 @@ plot_term_frequencies <- function(termsByDate, timeBinUnit = "week",
     ggplot2::geom_text(x = min(terms_to_plot$timebin),
                        y = y_scale_max * 0.9,
                        vjust = 1, hjust = 0,
-                       ggplot2::aes(label = term_label, colour = trend),
-                       family = "Share Tech",
+                       ggplot2::aes_string(label = "term_label",
+                                           colour = "trend"),
+                       #family = "Share Tech",
                        show.legend = FALSE, check_overlap = TRUE) +
     ggplot2::scale_color_manual(values = .term_trend_palette()) +
     ggplot2::facet_wrap(~term, ncol = nCols) +
     #xlab("") +
     #ylab("") +
     #ggtitle("TBD") +
-    theme_stwd_base(baseSize = 10) +
-    theme_fte_fonts(sizeAxisText = 10) +
+    .theme_stwd_base(baseSize = 10) +
+    .theme_fte_fonts(sizeAxisText = 10) +
     ggplot2::theme(panel.grid.major.y = ggplot2::element_line(colour = "#ffffff"),
                    axis.title.x = ggplot2::element_blank(),
                    axis.title.y = ggplot2::element_blank(),

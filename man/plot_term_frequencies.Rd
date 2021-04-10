@@ -41,15 +41,7 @@ e.g. if \code{c("^mod", "an", "el$", "^outbreak$")} is supplied for
 exact term \emph{'outbreak'} are matched. The arguments \code{selectBy} and
 \code{selectTerms} can be combined.}
 
-\item{verboseLabels}{a Boolean indicating if a single terms should be used as
-labels for subplots or if multiple term instances (i.e. variations of the
-term found in the original text source) should be used as labels. The
-\strong{default is \code{FALSE}}.}
-
-\item{nCols}{the number of columns along which term subplots should be layed
-out.}
-
-\item{selectBy}{the selection approach which determines the metric by which
+\item{selectTermsBy}{the selection approach which determines the metric by which
 \code{term}s will be sorted to select the \code{topN} terms. Currently, the
 following options are supported: \describe{
 \item{most_frequent}{\strong{the default}, select terms based on the total
@@ -65,6 +57,14 @@ absolute value of the slope of a simple linear regression fit to a
 largest change throughout the covered time period; internally this is
 measured by the residual standard deviation of the linear model fit to a
 \code{term}'s time frequency series.} }}
+
+\item{verboseLabels}{a Boolean indicating if a single terms should be used as
+labels for subplots or if multiple term instances (i.e. variations of the
+term found in the original text source) should be used as labels. The
+\strong{default is \code{FALSE}}.}
+
+\item{nCols}{the number of columns along which term subplots should be layed
+out.}
 }
 \description{
 \code{plot_term_frequencies} plots time series of term shares for a selection
@@ -76,9 +76,5 @@ This function merges the computation of term frequencies
 (\code{\link{term_frequencies}}), creation of suitable labels
 (\code{\link{terms_tokens_map}}) and the selection of terms by
 msicalleneous criteria (\code{\link{select_top_terms}}) into one step.
-}
-\seealso{
-Other visualizations: \code{\link{theme_fte_fonts}},
-  \code{\link{theme_stwd_base}}
 }
 \concept{visualizations}

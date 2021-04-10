@@ -13,16 +13,9 @@
 #'   Default is \emph{sans} (e.g. Helvetica, Arial - depending on which is the
 #'   default on the local system).
 #'
-#' @examples
+#' @keywords internal
 #'
-#' \dontrun{
-#' theme_stwd_base(baseSize = 12, baseFamily = "serif")
-#' }
-#'
-#' @family visualizations
-#'
-#' @export
-theme_stwd_base <- function(baseSize = 12, baseFamily = "sans") {
+.theme_stwd_base <- function(baseSize = 12, baseFamily = "sans") {
   # setup some properties for reuse
   # all font sizes will be defined relative to the base size
   font_base_size <- baseSize
@@ -139,11 +132,9 @@ theme_stwd_base <- function(baseSize = 12, baseFamily = "sans") {
 
 #' Applies custom fonts and sizes to chart axis
 #'
-#' @family visualizations
+#' @keywords internal
 #'
-#' @export
-#'
-theme_fte_fonts <- function(sizeAxisText = 12) {
+.theme_fte_fonts <- function(sizeAxisText = 12) {
   # explanatory text elements could use different fonts
   # (such as Source Sans Pro or Cooper Hewitt)
   font_family_main_plot_text <- "Source Sans Pro"
