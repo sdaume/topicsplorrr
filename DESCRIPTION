@@ -25,7 +25,9 @@ Imports:
     stats,
     lubridate,
     scales,
-    rlang
+    rlang,
+    tibble,
+    stm
 Suggests: 
     knitr,
     rmarkdown,

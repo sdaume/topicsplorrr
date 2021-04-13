@@ -45,6 +45,7 @@
 NULL
 
 
+#' @importFrom rlang .data
 #' @export
 #' @rdname extract-term-ngrams
 #'
@@ -71,6 +72,7 @@ terms_by_date <- function(textData, textColumn, dateColumn,
 
 
 
+#' @importFrom rlang .data
 #' @export
 #' @rdname extract-term-ngrams
 #'
@@ -229,6 +231,7 @@ bigrams_by_date <- function(textData, textColumn, dateColumn,
 #'   sequence obtained after tokenization and all other NLP processing options
 #'   have been applied to the text associated with a document.
 #'
+#' @importFrom rlang .data
 #' @export
 #'
 terms_dfm <- function(textData, textColumn, documentIdColumn,
