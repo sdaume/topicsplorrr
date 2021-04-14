@@ -77,4 +77,7 @@ This function merges the computation of term frequencies
 (\code{\link{terms_tokens_map}}) and the selection of terms by
 msicalleneous criteria (\code{\link{select_top_terms}}) into one step.
 }
+\seealso{
+Other visualizations: \code{\link{plot_topic_frequencies}}
+}
 \concept{visualizations}

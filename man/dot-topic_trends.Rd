@@ -4,14 +4,14 @@
 \alias{.topic_trends}
 \title{Fit a linear regression to time frequency series of each unique topic}
 \usage{
-.topic_trends(topicFrequencies, trendThreshold = 0.005)
+.topic_trends(topicFrequencies, trendThreshold = 5e-04)
 }
 \arguments{
 \item{topicFrequencies}{a dataframe of \code{topic} frequencies as returned
 by \code{\link{topic_frequencies}}}
 
 \item{trendThreshold}{a double used to categorise trends, default is
-\code{0.005}; if the intercept of the linear model of topic frequencies
+\code{0.0005}; if the intercept of the linear model of topic frequencies
 falls within a range of \code{+/-trendThreshold} of the mean topic share,
 the trend is categorized as \emph{"constant"}}
 }

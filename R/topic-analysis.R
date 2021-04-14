@@ -271,7 +271,7 @@ select_top_topics <- function(topicFrequencies, topN = 25,
 #'   by \code{\link{topic_frequencies}}
 #'
 #' @param trendThreshold a double used to categorise trends, default is
-#'   \code{0.005}; if the intercept of the linear model of topic frequencies
+#'   \code{0.0005}; if the intercept of the linear model of topic frequencies
 #'   falls within a range of \code{+/-trendThreshold} of the mean topic share,
 #'   the trend is categorized as \emph{"constant"}
 #'
@@ -289,7 +289,7 @@ select_top_topics <- function(topicFrequencies, topN = 25,
 #'
 #' @keywords internal
 #'
-.topic_trends <- function(topicFrequencies, trendThreshold = 0.005) {
+.topic_trends <- function(topicFrequencies, trendThreshold = 0.0005) {
 
   # index the timebin for fitting the lm; in order to get interpretable
   # intercepts when categorizing trends
