@@ -59,6 +59,7 @@ topics_by_doc_date <- function(topicModel, termsDfm, textData,
     merge(textData, by.x = "document", by.y = documentIdColumn) %>%
     dplyr::select(.data$document, .data$topic_id, .data$gamma, !!dateObj) %>%
     dplyr::rename(occur = !!dateObj) %>%
+    dplyr::mutate(topic_id = as.character(.data$topic_id)) %>%
     dplyr::select(.data$document, .data$occur, .data$topic_id, .data$gamma)
 
   return (topics_document_matrix)

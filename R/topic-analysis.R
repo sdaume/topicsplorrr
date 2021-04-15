@@ -1,3 +1,39 @@
+#' Mean topic likelihoods summary
+#'
+#' \code{topics_summary}  summarizes the mean likelihood of topics across all
+#' documents combined with a set of suitable labels. This is a convenience
+#' function to create summary visualizations or interactive tables.
+#'
+#' @param topicsByDocDate a dataframe as returned by
+#'   \code{\link{topics_by_doc_date}}
+#'
+#' @param topicLabels a dataframe as returned by \code{\link{topics_terms_map}},
+#'   associating a \code{topic_id} with a suitable \code{topic_label}.
+#'
+#' @return @return a dataframe with term frequencies by chosen timebin, where:
+#'   \describe{ \item{topic_id}{the unique topic identifier assigned by a topic
+#'   model} \item{topic_label}{a character vector of representative labels for
+#'   \code{topic_id}} \item{mean_gamma}{the mean likelihood of \code{topic_id}
+#'   across all documents} }
+#'
+#' @export
+#'
+topics_summary <- function(topicsByDocDate, topicLabels) {
+
+  topic_shares_summary <- topicsByDocDate %>%
+    dplyr::mutate(topic_id = as.character(.data$topic_id)) %>% #remove
+    dplyr::group_by(.data$topic_id) %>%
+    dplyr::summarise(mean_gamma = mean(.data$gamma)) %>%
+    dplyr::ungroup() %>%
+    dplyr::left_join(topicLabels, by = "topic_id") %>%
+    dplyr::select(.data$topic_id, .data$topic_label, .data$mean_gamma) %>%
+    dplyr::arrange(-.data$mean_gamma)
+
+  return(topic_shares_summary)
+}
+
+
+
 #' Compute topic shares for a given time bin
 #'
 #' \code{topic_frequencies} summarizes the shares of topics in a chosen time
