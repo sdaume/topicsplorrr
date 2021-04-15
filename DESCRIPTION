@@ -2,8 +2,11 @@ Package: topicsplorrr
 Title: A Package Supporting Topical Text Analysis, Exploration and Visualization 
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Stefan", "Daume", email = "stefan.daume@scitingly.net", 
-            role = c("cre", "aut")))
+    person(given = "Stefan",
+           family = "Daume",
+           role = c("aut", "cre"),
+           email = "stefan.daume@su.se",
+           comment = c(ORCID = "0000-0002-5879-0290")))
 Description: The package provides functions to analyse and visualize the results
     of an STM topic model, including a Shiny application for topic model 
     exploration.
