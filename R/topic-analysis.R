@@ -1,3 +1,60 @@
+#' Document counts and mean topic shares of the three primary topics for each
+#' document
+#'
+#' \code{primary_topics} summarizes for each topic the number of documents and
+#' the respective mean topic share (gamma) where a topic is one of the three
+#' primary topics in a document.
+#'
+#' @param topicsByDocDate a dataframe as returned by
+#'   \code{\link{topics_by_doc_date}}
+#'
+#' @param minGamma the minimum share of a topic per document to be considered
+#'   when summarizing primary topic information; topics with smaller shares per
+#'   individual document will be ignored when summarizing the document counts
+#'   and mean topic shares. (In an \code{\link[stm:stm]{stm topic model}} the
+#'   likelihood that a topic is generated from a topic is expressed by the value
+#'   \emph{gamma}.) The default is \code{0}, thus ensuring that three topics are
+#'   included for each document.
+#'
+#' @return a dataframe with 7 columns where: \describe{ \item{topic_id}{a topic
+#'   ID as provided as an input in \code{topicsByDocDate}}
+#'   \item{n_docs_1}{number of documents where \code{topic_id} has the largest
+#'   probability} \item{n_docs_2}{number of documents where \code{topic_id} has
+#'   the second largest probability} \item{n_docs_3}{number of documents where
+#'   \code{topic_id} has the third largest probability} \item{mean_gamma_1}{mean
+#'   probability of all documents in \code{n_docs_1}} \item{mean_gamma_2}{mean
+#'   probability of all documents in \code{n_docs_2}} \item{mean_gamma_3}{mean
+#'   probability of all documents in \code{n_docs_3}} }
+#'
+#' @export
+#'
+primary_topics <- function(topicsByDocDate, minGamma = 0) {
+  # the number of top N topics per document
+  # could potentially be an additional function argument
+  n_ranks <- 3
+
+  primary_topic_stats <- topicsByDocDate %>%
+    dplyr::filter(gamma >= minGamma) %>%
+    dplyr::group_by(document) %>%
+    dplyr::mutate(topic_doc_rank = rank(desc(gamma))) %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(topic_doc_rank <= n_ranks) %>%
+    dplyr::group_by(topic_id, topic_doc_rank) %>%
+    dplyr::summarise(mean_gamma =  mean(gamma),
+                     n_docs = n()) %>%
+    dplyr::ungroup() %>%
+    tidyr::pivot_wider(names_from = topic_doc_rank,
+                       values_from = c(n_docs, mean_gamma)) %>%
+    dplyr::arrange(-n_docs_1) %>%
+    replace(is.na(.), 0)
+
+  return(primary_topic_stats)
+}
+
+
+
+
+
 #' Mean topic likelihoods summary
 #'
 #' \code{topics_summary}  summarizes the mean likelihood of topics across all
