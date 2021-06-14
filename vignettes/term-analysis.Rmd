@@ -29,6 +29,8 @@ library(dplyr)
 library(lubridate)
 library(extrafont)
 
+loadfonts()
+
 # use quanteda's inaugural presidential speeches as sampel data
 sample_docs <- quanteda::convert(quanteda::data_corpus_inaugural,
                                         to = "data.frame") %>%
