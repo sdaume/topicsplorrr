@@ -45,8 +45,11 @@ primary_topics <- function(topicsByDocDate, minGamma = 0) {
     dplyr::ungroup() %>%
     tidyr::pivot_wider(names_from = .data$topic_doc_rank,
                        values_from = c(.data$n_docs, .data$mean_gamma)) %>%
-    dplyr::arrange(-.data$n_docs_1) %>%
-    replace(is.na(.data), 0)
+    dplyr::arrange(-.data$n_docs_1) #%>%
+    #replace(is.na(.data), 0)
+
+  primary_topic_stats <- replace(primary_topic_stats,
+                                 is.na(primary_topic_stats), 0)
 
   return(primary_topic_stats)
 }
