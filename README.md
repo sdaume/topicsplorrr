@@ -34,8 +34,17 @@ library(topicsplorrr)
 ## basic example code
 ```
 
-## License, credits, acknowledgements
+## License, credits and acknowledgements
 
 The package is shared under an [MIT License](LICENSE.md).
 
-**TBD**
+This package has been developed to support research at the [Stockholm
+Resilience Centre](https://www.stockholmresilience.org); this research
+has benefited from funding by the [Swedish Research Council for
+Sustainable Development (Formas)](https://formas.se/).
+
+## Disclaimer
+
+This package has been developed as a reusable tool for the author(s) own
+research and comes with no guarantee for the correctness of the
+supported analyses.
