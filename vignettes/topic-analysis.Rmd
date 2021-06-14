@@ -108,7 +108,7 @@ topic_means <- topics_summary(topic_doc_shares, topic_labels)
   
 ```
 
-```{r eval=TRUE}  
+```{r eval=FALSE, echo=TRUE}  
 topic_means <- topics_summary(topic_doc_shares, topic_labels)
 
 DT::datatable(topic_means, 
