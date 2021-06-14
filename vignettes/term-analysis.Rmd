@@ -22,6 +22,13 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(topicsplorrr)
+library(dplyr)
+library(lubridate)
+
+# use quanteda's inaugural presidential speeches as sampel data
+sample_docs <- quanteda::convert(quanteda::data_corpus_inaugural,
+                                        to = "data.frame") %>%
+  mutate(Year = lubridate::as_date(paste(Year, "-01-20", sep = "")))
 ```
 
 
@@ -29,7 +36,11 @@ library(topicsplorrr)
 
 The package primarily supports provides functions to analyze and visualize the results of an `stm` topical model, but includes also functions to explore simple term trends in a text corpus. This can be thought of as a first "naive" topical analysis and is a useful initial exploration of a text collection.
 
+```{r eval=FALSE}
 All examples in the following sections are using a snapshot of the [*'SARS-CoV-2 COVID-19'* preprint collection](https://connect.medrxiv.org/relate/content/181) on [medrXiv](https://www.medrxiv.org/) and [biorXiv](https://www.biorxiv.org/); this data is available via the [`covid19topics` package](https://github.com/sdaume/covid19topics) which has been setup for a topical analysis.
+```
+
+All examples in the following sections are based on a sample dataset from the quanteda package; the corresponding topic model data has been added as package datasets.
 
 For the following analyses common English stop words were typically removed from the source texts, as are numbers and words were ["stemmed"](https://en.wikipedia.org/wiki/Stemming)^[I.e. all words are reduced to their word stem and words like *"model", "models", "modelling", "modeling"* are transformed to the word stem *"model"*].  
 
@@ -40,10 +51,15 @@ The following table utilizes the package's `term_counts()` function to list the 
 library(topicsplorrr)
 library(dplyr)
 
+# use quanteda's inaugural presidential speeches as sampel data
+sample_docs <- quanteda::convert(quanteda::data_corpus_inaugural,
+                                        to = "data.frame") %>%
+  mutate(Year = lubridate::as_date(paste(Year, "-01-20", sep = "")))
+
 # extract unigrams
-processed_terms <- unigrams_by_date(textData = covid19topics::covid19preprints, 
-                                    textColumn = "title", 
-                                    dateColumn = "pub_date")
+processed_terms <- unigrams_by_date(textData = sample_docs, 
+                                    textColumn = "text", 
+                                    dateColumn = "Year")
 
 # and compute term shares
 top_title_terms <- term_counts(processed_terms) %>%
@@ -52,7 +68,7 @@ top_title_terms <- term_counts(processed_terms) %>%
 
 top_title_terms %>% 
   kableExtra::kbl(format = "html", 
-                  caption = "Most frequent terms in Covid19 preprint titles",
+                  caption = "Most frequent terms in the sample documents",
                   col.names = c("Term", "N", "%"),
                   digits = c(0,0,2)) 
 ```
@@ -60,20 +76,24 @@ top_title_terms %>%
 
 
 ## Term trends
+The variation of term shares over time can be the next step in exploring the basic "topical" trends in a text collection. The following code extracts the bigram term counts in sample documents and then plots the temporal frequencies for the 25 most frequent bigrams. 
 
-The variation of term shares over time can be the next step in exploring the basic "topical" trends in a text collection. The following code extracts the bigram term counts in the titles of  [*'SARS-CoV-2 COVID-19'* preprints](https://connect.medrxiv.org/relate/content/181) and then plots the weekly shares for the 16 most frequent bigrams. 
+```{r eval=FALSE}
+The variation of term shares over time can be the next step in exploring the basic "topical" trends in a text collection. The following code extracts the bigram term counts in the titles of  [*'SARS-CoV-2 COVID-19'* preprints](https://connect.medrxiv.org/relate/content/181) and then plots the weekly shares for the 25 most frequent bigrams. 
+```
 
 The code below utilizes the package's `plot_term_frequencies()` function. A linear trend line is added as a simple visual aid to distinguish terms with increasing, decreasing or stable trends. The example shows monthly shares of *bigrams* and demonstrates some additional options such as specifying additional stop words (here the most common terms in the preprint titles).
 
 
-```{r, fig.width=7, fig.height=7, dpi=200, eval=FALSE}
+```{r, echo=TRUE, fig.width=7, fig.height=7, dpi=200}
 library(topicsplorrr)
 
-terms_by_date(textData = covid19topics::covid19preprints,
-              textColumn = "title", 
-              dateColumn = "pub_date",
-              customStopwords = c("sars", "cov", "covid", "coronavirus", "virus"),
+terms_by_date(textData = sample_docs,
+              textColumn = "text", 
+              dateColumn = "Year",
+              #customStopwords = c("america", "government"),
               tokenType = "bigram") %>%
-  plot_term_frequencies(timeBinUnit = "month", topN = 16, nCols = 4)
+  plot_term_frequencies(timeBinUnit = "year", topN = 25, nCols = 5,
+                        minTermTimeBins = 0)
 ```
 
