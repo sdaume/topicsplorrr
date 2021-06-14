@@ -28,6 +28,7 @@ library(stm)
 library(dplyr)
 library(quanteda)
 library(DT)
+library(extrafont)
 
 # use quanteda's inaugural presidential speeches as sampel data
 sample_docs <- quanteda::convert(quanteda::data_corpus_inaugural,

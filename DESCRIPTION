@@ -36,7 +36,8 @@ Suggests:
     rmarkdown,
     kableExtra,
     DT,
-    markdown
+    markdown,
+    extrafont
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
