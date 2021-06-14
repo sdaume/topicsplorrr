@@ -101,6 +101,9 @@ regression for each term." />
     <li>
       <a href="../articles/term-analysis.html">Simple analysis of term frequencies</a>
     </li>
+    <li>
+      <a href="../articles/topic-analysis.html">Simple analysis of STM topic models</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -158,15 +161,15 @@ the trend is categorized as <em>"constant"</em></p></td>
 
     <p>a dataframe specifying trend metrics for each <code>term</code>, where:</p><dl>
 <dt>term</dt><dd><p>a unique term</p></dd> <dt>slope</dt><dd><p>the slope
-coefficient of the linear model fit to this <code>term</code>'s time frequency
-series</p></dd> <dt>volatility</dt><dd><p>the residual standard deviation of the linear
-model fit to this <code>term</code>'s time frequency series, which is used as a
-basic measure of volatility of term frequencies</p></dd> <dt>trend</dt><dd><p>a
-categorisation of the term frequency trend, negative slopes with an
-intercept <code>&gt; mean term share + trendThreshold</code> are interpreted as
-<em>decreasing</em>, positive slopes with an intercept <code>&lt; mean term
+  coefficient of the linear model fit to this <code>term</code>'s time frequency
+  series</p></dd> <dt>volatility</dt><dd><p>the residual standard deviation of the linear
+  model fit to this <code>term</code>'s time frequency series, which is used as a
+  basic measure of volatility of term frequencies</p></dd> <dt>trend</dt><dd><p>a
+  categorisation of the term frequency trend, negative slopes with an
+  intercept <code>&gt; mean term share + trendThreshold</code> are interpreted as
+  <em>decreasing</em>, positive slopes with an intercept <code>&lt; mean term
   share - trendThreshold</code> as <em>increasing</em>, all others as
-<em>constant</em></p></dd> 
+  <em>constant</em></p></dd> 
 </dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>

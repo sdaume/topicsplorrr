@@ -57,6 +57,9 @@
 <li>
       <a href="../articles/term-analysis.html">Simple analysis of term frequencies</a>
     </li>
+    <li>
+      <a href="../articles/topic-analysis.html">Simple analysis of STM topic models</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -77,7 +80,8 @@
 
       
 
-      </header><script src="term-analysis_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="term-analysis_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="term-analysis_files/kePrint-0.0.1/kePrint.js"></script><link href="term-analysis_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Simple analysis of term frequencies</h1>
@@ -94,17 +98,22 @@
 <h2 class="hasAnchor">
 <a href="#naive-topic-analysis" class="anchor"></a>“Naive” topic analysis</h2>
 <p>The package primarily supports provides functions to analyze and visualize the results of an <code>stm</code> topical model, but includes also functions to explore simple term trends in a text corpus. This can be thought of as a first “naive” topical analysis and is a useful initial exploration of a text collection.</p>
-<p>All examples in the following sections are using a snapshot of the <a href="https://connect.medrxiv.org/relate/content/181"><em>‘SARS-CoV-2 COVID-19’</em> preprint collection</a> on <a href="https://www.medrxiv.org/">medrXiv</a> and <a href="https://www.biorxiv.org/">biorXiv</a>; this data is available via the <a href="https://github.com/sdaume/covid19topics"><code>covid19topics</code> package</a> which has been setup for a topical analysis.</p>
+<p>All examples in the following sections are based on a sample dataset from the quanteda package; the corresponding topic model data has been added as package datasets.</p>
 <p>For the following analyses common English stop words were typically removed from the source texts, as are numbers and words were <a href="https://en.wikipedia.org/wiki/Stemming">“stemmed”</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p>The following table utilizes the package’s <code><a href="../reference/term_counts.html">term_counts()</a></code> function to list the most frequent terms in the analyzed preprint titles.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sdaume.github.io/topicsplorrr/">topicsplorrr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
+<span class="co"># use quanteda's inaugural presidential speeches as sampel data</span>
+<span class="va">sample_docs</span> <span class="op">&lt;-</span> <span class="fu">quanteda</span><span class="fu">::</span><span class="fu"><a href="https://quanteda.io/reference/convert.html">convert</a></span><span class="op">(</span><span class="fu">quanteda</span><span class="fu">::</span><span class="va"><a href="https://quanteda.io/reference/data_corpus_inaugural.html">data_corpus_inaugural</a></span>,
+                                        to <span class="op">=</span> <span class="st">"data.frame"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Year <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Year</span>, <span class="st">"-01-20"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
 <span class="co"># extract unigrams</span>
-<span class="va">processed_terms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract-term-ngrams.html">unigrams_by_date</a></span><span class="op">(</span>textData <span class="op">=</span> <span class="fu">covid19topics</span><span class="fu">::</span><span class="va">covid19preprints</span>, 
-                                    textColumn <span class="op">=</span> <span class="st">"title"</span>, 
-                                    dateColumn <span class="op">=</span> <span class="st">"pub_date"</span><span class="op">)</span>
+<span class="va">processed_terms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract-term-ngrams.html">unigrams_by_date</a></span><span class="op">(</span>textData <span class="op">=</span> <span class="va">sample_docs</span>, 
+                                    textColumn <span class="op">=</span> <span class="st">"text"</span>, 
+                                    dateColumn <span class="op">=</span> <span class="st">"Year"</span><span class="op">)</span>
 
 <span class="co"># and compute term shares</span>
 <span class="va">top_title_terms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/term_counts.html">term_counts</a></span><span class="op">(</span><span class="va">processed_terms</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -113,33 +122,154 @@
 
 <span class="va">top_title_terms</span> <span class="op">%&gt;%</span> 
   <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html">kbl</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"html"</span>, 
-                  caption <span class="op">=</span> <span class="st">"Most frequent terms in Covid19 preprint titles"</span>,
+                  caption <span class="op">=</span> <span class="st">"Most frequent terms in the sample documents"</span>,
                   col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Term"</span>, <span class="st">"N"</span>, <span class="st">"%"</span><span class="op">)</span>,
                   digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<table class="table">
+<caption>
+Most frequent terms in the sample documents
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+Term
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+%
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+nation
+</td>
+<td style="text-align:right;">
+693
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+govern
+</td>
+<td style="text-align:right;">
+687
+</td>
+<td style="text-align:right;">
+1.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+peopl
+</td>
+<td style="text-align:right;">
+632
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+power
+</td>
+<td style="text-align:right;">
+375
+</td>
+<td style="text-align:right;">
+0.74
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+countri
+</td>
+<td style="text-align:right;">
+359
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+world
+</td>
+<td style="text-align:right;">
+350
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+citizen
+</td>
+<td style="text-align:right;">
+304
+</td>
+<td style="text-align:right;">
+0.60
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+constitut
+</td>
+<td style="text-align:right;">
+289
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+peac
+</td>
+<td style="text-align:right;">
+289
+</td>
+<td style="text-align:right;">
+0.57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+law
+</td>
+<td style="text-align:right;">
+279
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="term-trends" class="section level2">
 <h2 class="hasAnchor">
 <a href="#term-trends" class="anchor"></a>Term trends</h2>
-<p>The variation of term shares over time can be the next step in exploring the basic “topical” trends in a text collection. The following code extracts the bigram term counts in the titles of <a href="https://connect.medrxiv.org/relate/content/181"><em>‘SARS-CoV-2 COVID-19’</em> preprints</a> and then plots the weekly shares for the 16 most frequent bigrams.</p>
+<p>The variation of term shares over time can be the next step in exploring the basic “topical” trends in a text collection. The following code extracts the bigram term counts in sample documents and then plots the temporal frequencies for the 25 most frequent bigrams.</p>
 <p>The code below utilizes the package’s <code><a href="../reference/plot_term_frequencies.html">plot_term_frequencies()</a></code> function. A linear trend line is added as a simple visual aid to distinguish terms with increasing, decreasing or stable trends. The example shows monthly shares of <em>bigrams</em> and demonstrates some additional options such as specifying additional stop words (here the most common terms in the preprint titles).</p>
-</div>
-<div id="sandbox" class="section level2">
-<h2 class="hasAnchor">
-<a href="#sandbox" class="anchor"></a>Sandbox</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://sdaume.github.io/topicsplorrr/">topicsplorrr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="co"># extract unigrams</span>
-<span class="va">processed_terms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/extract-term-ngrams.html">bigrams_by_date</a></span><span class="op">(</span>textData <span class="op">=</span> <span class="fu">covid19topics</span><span class="fu">::</span><span class="va">covid19preprints</span>, 
-                                    textColumn <span class="op">=</span> <span class="st">"title"</span>, 
-                                    dateColumn <span class="op">=</span> <span class="st">"pub_date"</span><span class="op">)</span>
-
-<span class="va">termfreqs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/term_frequencies.html">term_frequencies</a></span><span class="op">(</span><span class="va">processed_terms</span>, timeBinUnit <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span>
-
-<span class="va">topterms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_top_terms.html">select_top_terms</a></span><span class="op">(</span><span class="va">termfreqs</span><span class="op">)</span>
-
-<span class="va">termfreqs</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">termfreqs</span>, <span class="va">term_share_per_timebin</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/extract-term-ngrams.html">terms_by_date</a></span><span class="op">(</span>textData <span class="op">=</span> <span class="va">sample_docs</span>,
+              textColumn <span class="op">=</span> <span class="st">"text"</span>, 
+              dateColumn <span class="op">=</span> <span class="st">"Year"</span>,
+              <span class="co">#customStopwords = c("america", "government"),</span>
+              tokenType <span class="op">=</span> <span class="st">"bigram"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/plot_term_frequencies.html">plot_term_frequencies</a></span><span class="op">(</span>timeBinUnit <span class="op">=</span> <span class="st">"year"</span>, topN <span class="op">=</span> <span class="fl">25</span>, nCols <span class="op">=</span> <span class="fl">5</span>,
+                        minTermTimeBins <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<p><img src="term-analysis_files/figure-html/unnamed-chunk-5-1.png" width="1400"></p>
 </div>
 <div class="footnotes">
 <hr>

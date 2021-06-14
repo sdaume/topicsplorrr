@@ -100,6 +100,9 @@ in a chosen timebin for a given collection of terms with date of occurrence." />
     <li>
       <a href="../articles/term-analysis.html">Simple analysis of term frequencies</a>
     </li>
+    <li>
+      <a href="../articles/topic-analysis.html">Simple analysis of STM topic models</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -173,22 +176,22 @@ this threshold will not be included in the returned results.</p></td>
 
     <p>a dataframe with term frequencies by chosen timebin, where:</p><dl>
 <dt>term</dt><dd><p>a term as provided as an input in
-<code>termsByDate</code></p></dd> <dt>timebin</dt><dd><p>the first day of the a timebin; if
-<code>timeBinUnit</code> was set to <code>week</code>, this date will always be a
-Monday</p></dd> <dt>n_term_per_timebin</dt><dd><p>the number of occurrences of <code>term</code>
-in <code>timebin</code></p></dd> <dt>first_occur</dt><dd><p>the exact date of the first
-occurrence of <code>term</code> across the whole time range covered by
-<code>timebin</code>s</p></dd> <dt>latest_occur</dt><dd><p>the exact date of the latest
-occurrence of <code>term</code> across the whole time range covered by
-<code>timebin</code>s; note that this date can be larger than the maximum
-<code>timebin</code>, as <code>timebin</code> specifies the floor date of a time unit</p></dd>
-<dt>term_share_per_timebin</dt><dd><p>the share of <code>term</code> in a given
-<code>timebin</code> with respect to all other term occurrences in a
-<code>timebin</code>; <strong>NOTE</strong> that this is computed in consideration of all
-terms, including those that may be filtered out of the results</p></dd>
-<dt>n_term_total</dt><dd><p>the total number of occurrences in the dataset, i.e.
-across all <code>timebin</code>s</p></dd> <dt>n_term_timebins</dt><dd><p>the number of unique
-<code>timebin</code>s in which an occurrence of <code>term</code> was recorded</p></dd> 
+  <code>termsByDate</code></p></dd> <dt>timebin</dt><dd><p>the first day of the a timebin; if
+  <code>timeBinUnit</code> was set to <code>week</code>, this date will always be a
+  Monday</p></dd> <dt>n_term_per_timebin</dt><dd><p>the number of occurrences of <code>term</code>
+  in <code>timebin</code></p></dd> <dt>first_occur</dt><dd><p>the exact date of the first
+  occurrence of <code>term</code> across the whole time range covered by
+  <code>timebin</code>s</p></dd> <dt>latest_occur</dt><dd><p>the exact date of the latest
+  occurrence of <code>term</code> across the whole time range covered by
+  <code>timebin</code>s; note that this date can be larger than the maximum
+  <code>timebin</code>, as <code>timebin</code> specifies the floor date of a time unit</p></dd>
+  <dt>term_share_per_timebin</dt><dd><p>the share of <code>term</code> in a given
+  <code>timebin</code> with respect to all other term occurrences in a
+  <code>timebin</code>; <strong>NOTE</strong> that this is computed in consideration of all
+  terms, including those that may be filtered out of the results</p></dd>
+  <dt>n_term_total</dt><dd><p>the total number of occurrences in the dataset, i.e.
+  across all <code>timebin</code>s</p></dd> <dt>n_term_timebins</dt><dd><p>the number of unique
+  <code>timebin</code>s in which an occurrence of <code>term</code> was recorded</p></dd> 
 </dl>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>

@@ -101,6 +101,9 @@ as input for an stm topic modeller." />
     <li>
       <a href="../articles/term-analysis.html">Simple analysis of term frequencies</a>
     </li>
+    <li>
+      <a href="../articles/topic-analysis.html">Simple analysis of STM topic models</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -132,7 +135,7 @@ as input for an stm topic modeller." />
     <div class="ref-description">
     <p><code>terms_dfm</code> takes a text source with text objects associated with unique
 document identifiers and creates a document-feature-matrix, which can be used
-as input for an <code>stm</code> topic modeller.</p>
+as input for an <code><a href='https://rdrr.io/pkg/stm/man/stm.html'>stm</a></code> topic modeller.</p>
     </div>
 
     <pre class="usage"><span class='fu'>terms_dfm</span><span class='op'>(</span><span class='va'>textData</span>, <span class='va'>textColumn</span>, <span class='va'>documentIdColumn</span>,
@@ -186,12 +189,12 @@ that should be removed from the result</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a <em>document-feature-matrix</em> of type
-<code>quanteda::dfm</code> (similar to a
-document-term-matrix), where a <em>document</em> is identified by the value
-in the <code>documentIdColumn</code> specified in the text source (i.e.
-<code>textData</code>), and a <em>feature</em> or <em>term</em> is a character
-sequence obtained after tokenization and all other NLP processing options
-have been applied to the text associated with a document.</p>
+  <code><a href='https://quanteda.io/reference/dfm.html'>quanteda::dfm</a></code> (similar to a
+  document-term-matrix), where a <em>document</em> is identified by the value
+  in the <code>documentIdColumn</code> specified in the text source (i.e.
+  <code>textData</code>), and a <em>feature</em> or <em>term</em> is a character
+  sequence obtained after tokenization and all other NLP processing options
+  have been applied to the text associated with a document.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Text input (<code>textColumn</code>) is split with a <em>word tokenizer</em> and

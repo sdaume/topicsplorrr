@@ -102,6 +102,9 @@ function for specific types of ngrams." />
     <li>
       <a href="../articles/term-analysis.html">Simple analysis of term frequencies</a>
     </li>
+    <li>
+      <a href="../articles/topic-analysis.html">Simple analysis of STM topic models</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -190,10 +193,10 @@ words) are supported, with <strong><code>unigram</code> as default</strong></p><
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a dataframe with three columns listing all individual term
-occurrences in the provided text source, where <code>occur</code> is the
-publication date associated with an original <code>token</code>, which has been
-processed/reduced to <code>term</code>; if no stemming has been applied the term
-and token in the result are identical</p>
+  occurrences in the provided text source, where <code>occur</code> is the
+  publication date associated with an original <code>token</code>, which has been
+  processed/reduced to <code>term</code>; if no stemming has been applied the term
+  and token in the result are identical</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Text input (<code>textColumn</code>) is split with a <em>word tokenizer</em>, default

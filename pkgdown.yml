@@ -3,5 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   term-analysis: term-analysis.html
-last_built: 2021-04-10T12:27Z
+  topic-analysis: topic-analysis.html
+last_built: 2021-06-14T16:56Z
 
