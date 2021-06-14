@@ -35,7 +35,7 @@ Suggests:
     knitr,
     rmarkdown,
     kableExtra,
-    covid19topics
+    quanteda
 VignetteBuilder: knitr
-Remotes:
-    sdaume/covid19topics
+Depends: 
+    R (>= 2.10)
