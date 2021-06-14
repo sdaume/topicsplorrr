@@ -1,8 +1,11 @@
 ---
 title: "Simple analysis of term frequencies"
 output: 
-  html_document:
-    toc: false
+  tufte::tufte_html:
+    tufte_variant: envisioned
+    toc: true
+    css: vignette.css
+    margin_references: false
 vignette: >
   %\VignetteIndexEntry{Simple analysis of term frequencies}
   %\VignetteEngine{knitr::rmarkdown}
