@@ -35,27 +35,27 @@ returned results.}
 }
 \value{
 a dataframe with term frequencies by chosen timebin, where:
-\describe{ \item{topic_id}{a topic ID as provided as an input in
-\code{topicsByDocDate}} \item{timebin}{the floor date of a timebin; if
-\code{timeBinUnit} was set to \code{week}, this date will always be a
-Monday} \item{median_gamma}{the median of likelihoods of the topic with
-\code{topic_id} in \code{timebin}} \item{mean_gamma}{the mean of
-likelihoods of the topic with \code{topic_id} in \code{timebin}}
-\item{topicshare}{the share of topic with \code{topic_id} relative to all
-topic shares recorded and included in a given \code{timebin}.
-\strong{NOTE:} strictly speaking these are the likelihoods that a document
-is generated from a topic, which we here interpret as the share of a
-document attributed to a topic.} \item{n_docs_topic}{the total number of
-documents in a dataset in which a topic with \code{topic_id} occurs as
-least with likelihood \code{minGamma}} \item{first_occur}{the exact date of
-the first occurrence of a topic with \code{topic_id} across the whole time
-range covered by \code{timebin}s} \item{latest_occur}{the exact date of the
-latest occurrence of a topic with \code{topic_id} across the whole time
-range covered by \code{timebin}s; note that this date can be larger than
-the maximum \code{timebin}, as \code{timebin} specifies the floor date of a
-time unit} \item{n_topic_timebins}{the number of unique \code{timebin}s in
-a topic with \code{topic_id} occurs at least with likelihood
-\code{minGamma}} }
+  \describe{ \item{topic_id}{a topic ID as provided as an input in
+  \code{topicsByDocDate}} \item{timebin}{the floor date of a timebin; if
+  \code{timeBinUnit} was set to \code{week}, this date will always be a
+  Monday} \item{median_gamma}{the median of likelihoods of the topic with
+  \code{topic_id} in \code{timebin}} \item{mean_gamma}{the mean of
+  likelihoods of the topic with \code{topic_id} in \code{timebin}}
+  \item{topicshare}{the share of topic with \code{topic_id} relative to all
+  topic shares recorded and included in a given \code{timebin}.
+  \strong{NOTE:} strictly speaking these are the likelihoods that a document
+  is generated from a topic, which we here interpret as the share of a
+  document attributed to a topic.} \item{n_docs_topic}{the total number of
+  documents in a dataset in which a topic with \code{topic_id} occurs as
+  least with likelihood \code{minGamma}} \item{first_occur}{the exact date of
+  the first occurrence of a topic with \code{topic_id} across the whole time
+  range covered by \code{timebin}s} \item{latest_occur}{the exact date of the
+  latest occurrence of a topic with \code{topic_id} across the whole time
+  range covered by \code{timebin}s; note that this date can be larger than
+  the maximum \code{timebin}, as \code{timebin} specifies the floor date of a
+  time unit} \item{n_topic_timebins}{the number of unique \code{timebin}s in
+  a topic with \code{topic_id} occurs at least with likelihood
+  \code{minGamma}} }
 }
 \description{
 \code{topic_frequencies} summarizes the shares of topics in a chosen time

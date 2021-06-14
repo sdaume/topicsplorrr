@@ -3,14 +3,14 @@
 \docType{data}
 \name{sample_topic_doc_probs}
 \alias{sample_topic_doc_probs}
-\title{Per-document topic probabilities for the \code{covid19preprints} topics}
+\title{Per-document topic probabilities for the `covid19preprints` topics}
 \format{a dataframe with 4 variables: \describe{ \item{document}{a unique
-document identifier, here a combination of president and year of speech}
-\item{occur}{the (assumed) date of \code{document} (i.e. speech) as a Date
-object} \item{topic_id}{a topic ID as assigned in the applied topic model}
-\item{gamma}{the probability that the given \code{topic_id} explains the
-given \code{document}; in the analysis we interpret this as the topic's
-share in this document} }}
+  document identifier, here a combination of president and year of speech}
+  \item{occur}{the (assumed) date of \code{document} (i.e. speech) as a Date
+  object} \item{topic_id}{a topic ID as assigned in the applied topic model}
+  \item{gamma}{the probability that the given \code{topic_id} explains the
+  given \code{document}; in the analysis we interpret this as the topic's
+  share in this document} }}
 \usage{
 sample_topic_doc_probs
 }
@@ -18,8 +18,8 @@ sample_topic_doc_probs
 This package data set summarizes the per document topic probabilities
 according to the \code{\link[stm:stm]{stm}} topic model
 \code{\link{sample_topics}} fit to the inaugural presidential speeches in the
-respective dataset included in the \code{quanteda} package
-(\code{\link{quanteda::data_corpus_inaugural}}).
+respective dataset included in the \emph{quanteda} package
+(\code{\link[quanteda:data_corpus_inaugural]{quanteda::data_corpus_inaugural}}).
 }
 \details{
 This dataset is included for convenience and reproducibility, most analysis

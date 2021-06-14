@@ -15,7 +15,6 @@ BugReports: https://github.com/sdaume/topicsplorrr/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Imports: 
     magrittr,
@@ -27,6 +26,7 @@ Imports:
     ggplot2,
     stats,
     lubridate,
+    quanteda,
     scales,
     rlang,
     tibble,
@@ -35,7 +35,7 @@ Suggests:
     knitr,
     rmarkdown,
     kableExtra,
-    quanteda
+    DT
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)

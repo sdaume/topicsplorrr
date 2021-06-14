@@ -4,7 +4,7 @@
 \name{sample_dfm}
 \alias{sample_dfm}
 \title{Document-feature-matrix of the inaugural presidential speeches}
-\format{a \code{\link[quanteda]{quanteda}} dfm}
+\format{a \code{\link[quanteda:dfm]{quanteda::dfm}}}
 \usage{
 sample_dfm
 }
@@ -12,9 +12,9 @@ sample_dfm
 This package data provides the document-feature-matrix (DFM) used to fit the
 \code{\link[stm:stm]{stm}} topic model \code{\link{sample_topics}}. The DFM
 is based on the inaugural presidential speeches in the respective dataset
-included in the \code{quanteda} package
-(\code{\link{quanteda::data_corpus_inaugural}}), with stopwords and numbers
-removed.
+included in the \emph{quanteda} package
+(\code{\link[quanteda:data_corpus_inaugural]{quanteda::data_corpus_inaugural}}),
+with stopwords and numbers removed.
 }
 \details{
 This dataset is included for convenience and reproducibility.

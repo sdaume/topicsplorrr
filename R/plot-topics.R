@@ -181,8 +181,8 @@ plot_term_frequencies <- function(termsByDate, timeBinUnit = "week",
 #'
 #' This function merges the computation of topic frequencies
 #' (\code{\link{topic_frequencies}}), creation of suitable labels
-#' (\code{\link{topics_terms_map}}) and the selection of topics by
-#' miscellaneous criteria (\code{\link{select_top_topics}}) into one step.
+#' (\code{\link{topics_terms_map}}) and the selection of topics by miscellaneous
+#' criteria (\code{\link{select_top_topics}}) into one step.
 #'
 #' @param topicsByDocDate a dataframe as returned by
 #'   \code{\link{topics_by_doc_date}}
@@ -234,7 +234,12 @@ plot_term_frequencies <- function(termsByDate, timeBinUnit = "week",
 #'   \item{most_volatile}{select topics with the largest change throughout the
 #'   covered time period; internally this is measured by the residual standard
 #'   deviation of the linear model fit to a \code{topic_id}'s time frequency
-#'   series.} }
+#'   series.} \item{topic_id}{select topics specified by \code{topic_id} in the
+#'   function argument \code{selectTopics}.} }
+#'
+#' @param selectTopics a vector of topic IDs which should be plotted; this
+#'   option is only considered when the option \emph{"topic_id"} is chosen for
+#'   \code{selectBy}.
 #'
 #' @param verboseLabels a Boolean indicating if additional topic information
 #'   should be used to labels subplots. The \strong{default is \code{FALSE}}.

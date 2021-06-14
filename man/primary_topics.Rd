@@ -21,14 +21,14 @@ included for each document.}
 }
 \value{
 a dataframe with 7 columns where: \describe{ \item{topic_id}{a topic
-ID as provided as an input in \code{topicsByDocDate}}
-\item{n_docs_1}{number of documents where \code{topic_id} has the largest
-probability} \item{n_docs_2}{number of documents where \code{topic_id} has
-the second largest probability} \item{n_docs_3}{number of documents where
-\code{topic_id} has the third largest probability} \item{mean_gamma_1}{mean
-probability of all documents in \code{n_docs_1}} \item{mean_gamma_2}{mean
-probability of all documents in \code{n_docs_2}} \item{mean_gamma_3}{mean
-probability of all documents in \code{n_docs_3}} }
+  ID as provided as an input in \code{topicsByDocDate}}
+  \item{n_docs_1}{number of documents where \code{topic_id} has the largest
+  probability} \item{n_docs_2}{number of documents where \code{topic_id} has
+  the second largest probability} \item{n_docs_3}{number of documents where
+  \code{topic_id} has the third largest probability} \item{mean_gamma_1}{mean
+  probability of all documents in \code{n_docs_1}} \item{mean_gamma_2}{mean
+  probability of all documents in \code{n_docs_2}} \item{mean_gamma_3}{mean
+  probability of all documents in \code{n_docs_3}} }
 }
 \description{
 \code{primary_topics} summarizes for each topic the number of documents and

@@ -41,10 +41,10 @@ words) are supported, with \strong{\code{unigram} as default}}
 }
 \value{
 a dataframe with three columns listing all individual term
-occurrences in the provided text source, where \code{occur} is the
-publication date associated with an original \code{token}, which has been
-processed/reduced to \code{term}; if no stemming has been applied the term
-and token in the result are identical
+  occurrences in the provided text source, where \code{occur} is the
+  publication date associated with an original \code{token}, which has been
+  processed/reduced to \code{term}; if no stemming has been applied the term
+  and token in the result are identical
 }
 \description{
 These functions transform a text source into a dataframe of individual terms

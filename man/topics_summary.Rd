@@ -15,10 +15,10 @@ associating a \code{topic_id} with a suitable \code{topic_label}.}
 }
 \value{
 @return a dataframe with term frequencies by chosen timebin, where:
-\describe{ \item{topic_id}{the unique topic identifier assigned by a topic
-model} \item{topic_label}{a character vector of representative labels for
-\code{topic_id}} \item{mean_gamma}{the mean likelihood of \code{topic_id}
-across all documents} }
+  \describe{ \item{topic_id}{the unique topic identifier assigned by a topic
+  model} \item{topic_label}{a character vector of representative labels for
+  \code{topic_id}} \item{mean_gamma}{the mean likelihood of \code{topic_id}
+  across all documents} }
 }
 \description{
 \code{topics_summary}  summarizes the mean likelihood of topics across all

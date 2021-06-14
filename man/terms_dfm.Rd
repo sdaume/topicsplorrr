@@ -36,12 +36,12 @@ that should be removed from the result}
 }
 \value{
 a \emph{document-feature-matrix} of type
-\code{\link[quanteda:dfm]{quanteda::dfm}} (similar to a
-document-term-matrix), where a \emph{document} is identified by the value
-in the \code{documentIdColumn} specified in the text source (i.e.
-\code{textData}), and a \emph{feature} or \emph{term} is a character
-sequence obtained after tokenization and all other NLP processing options
-have been applied to the text associated with a document.
+  \code{\link[quanteda:dfm]{quanteda::dfm}} (similar to a
+  document-term-matrix), where a \emph{document} is identified by the value
+  in the \code{documentIdColumn} specified in the text source (i.e.
+  \code{textData}), and a \emph{feature} or \emph{term} is a character
+  sequence obtained after tokenization and all other NLP processing options
+  have been applied to the text associated with a document.
 }
 \description{
 \code{terms_dfm} takes a text source with text objects associated with unique

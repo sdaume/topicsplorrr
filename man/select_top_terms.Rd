@@ -41,13 +41,13 @@ exact term \emph{'outbreak'} are matched. The arguments \code{selectBy} and
 }
 \value{
 a dataframe specifying trend metrics employed for selecting top
-\code{term}s, where: \describe{ \item{term}{a unique term}
-\item{n_term_total}{the total number of a \code{term}'s occurrences in the
-dataset} \item{slope}{the slope coefficient of a linear model fit to this
-\code{term}'s time frequency series} \item{volatility}{the residual
-standard deviation of a linear model fit to this \code{term}'s time
-frequency series} \item{trend}{a categorisation of the term frequency
-trend} }
+  \code{term}s, where: \describe{ \item{term}{a unique term}
+  \item{n_term_total}{the total number of a \code{term}'s occurrences in the
+  dataset} \item{slope}{the slope coefficient of a linear model fit to this
+  \code{term}'s time frequency series} \item{volatility}{the residual
+  standard deviation of a linear model fit to this \code{term}'s time
+  frequency series} \item{trend}{a categorisation of the term frequency
+  trend} }
 }
 \description{
 \code{select_top_terms} allows to select a specified number of top terms

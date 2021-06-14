@@ -27,12 +27,12 @@ date associated with a document identified by a unique identifier in
 }
 \value{
 a dataframe with topic shares/likelihoods per document, where:
-\describe{\item{document}{a unique identifier for a document}
-\item{occur}{a publication date associated with \code{document}}
-\item{topic_id}{a numeric identifier of a topic} \item{gamma}{the
-likelihood that \code{document} is generated from the topic with
-\code{topic_id}; the analyses in this package interprete this likelihood as
-the share of this topic in this document.} }
+  \describe{\item{document}{a unique identifier for a document}
+  \item{occur}{a publication date associated with \code{document}}
+  \item{topic_id}{a numeric identifier of a topic} \item{gamma}{the
+  likelihood that \code{document} is generated from the topic with
+  \code{topic_id}; the analyses in this package interprete this likelihood as
+  the share of this topic in this document.} }
 }
 \description{
 \code{topics_by_doc_date} retrieves the likelihoods that a document is

@@ -11,10 +11,10 @@ term_counts(termsByDate)
 }
 \value{
 a dataframe with three columns listing all unique \code{term}s in the
-provided text source, where \code{n_term} is the total number of occurences
-in the text source and \code{term_share} the share relative to all other
-terms; if no stemming has been applied the term and token in the result are
-identical
+  provided text source, where \code{n_term} is the total number of occurences
+  in the text source and \code{term_share} the share relative to all other
+  terms; if no stemming has been applied the term and token in the result are
+  identical
 }
 \description{
 \code{term_counts} counts the occurences and computes shares of unique

@@ -11,11 +11,11 @@ terms_tokens_map(termsByDate)
 }
 \value{
 a dataframe with four columns:\describe{ \item{term}{a unique
-character sequence identified in a text source} \item{term_instances}{a
-list of unique instances of \code{term} (i.e. \code{token}s) that were
-reduced to \code{term}} \item{n_term_instances}{a list of respective counts
-of the term instances in \code{term_instances}} \item{term_label}{a
-suitable default label for the \code{term}} }
+  character sequence identified in a text source} \item{term_instances}{a
+  list of unique instances of \code{term} (i.e. \code{token}s) that were
+  reduced to \code{term}} \item{n_term_instances}{a list of respective counts
+  of the term instances in \code{term_instances}} \item{term_label}{a
+  suitable default label for the \code{term}} }
 }
 \description{
 \code{terms_tokens_map} summarizes the result returned by the

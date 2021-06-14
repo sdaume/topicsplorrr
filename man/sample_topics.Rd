@@ -12,7 +12,8 @@ sample_topics
 This package dataset is a \code{\link[stm:stm]{stm}} topic model for the
 \code{\link{sample_dfm}} with 25 topics; it was fit to the inaugural
 presidential speeches in the respective dataset included in the
-\code{quanteda} package (\code{\link{quanteda::data_corpus_inaugural}}).
+\emph{quanteda} package
+(\code{\link[quanteda:data_corpus_inaugural]{quanteda::data_corpus_inaugural}}).
 }
 \details{
 This dataset is included for convenience and reproducibility; depending on

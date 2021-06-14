@@ -32,17 +32,22 @@ linear regression fit to a \code{topic_id}s frequency series.}
 \item{most_volatile}{select topics with the largest change throughout the
 covered time period; internally this is measured by the residual standard
 deviation of the linear model fit to a \code{topic_id}'s time frequency
-series.} }}
+series.} \item{topic_id}{select topics specified by \code{topic_id} in the
+function argument \code{selectTopics}.}}}
+
+\item{selectTopics}{a vector of topic IDs by which the returned results
+should be filtered; this option is only considered when the option
+\emph{"topic_id"} is chosen for \code{selectBy}.}
 }
 \value{
 a dataframe specifying topic metrics employed for selecting top
-\code{topic}s, where: \describe{ \item{topic_id}{a unique topic identifier}
-\item{n_doc_topics}{the total number of documents in a dataset in which a
-topic with \code{topic_id} occurs} \item{slope}{the slope coefficient of a
-linear model fit to this \code{topic_id}'s time frequency series}
-\item{volatility}{the residual standard deviation of a linear model fit to
-this \code{topic_id}'s time frequency series} \item{trend}{a categorisation
-of the topic frequency trend} }
+  \code{topic}s, where: \describe{ \item{topic_id}{a unique topic identifier}
+  \item{n_doc_topics}{the total number of documents in a dataset in which a
+  topic with \code{topic_id} occurs} \item{slope}{the slope coefficient of a
+  linear model fit to this \code{topic_id}'s time frequency series}
+  \item{volatility}{the residual standard deviation of a linear model fit to
+  this \code{topic_id}'s time frequency series} \item{trend}{a categorisation
+  of the topic frequency trend} }
 }
 \description{
 \code{select_top_topics} allows to select a specified number of top topics

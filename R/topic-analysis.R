@@ -34,19 +34,19 @@ primary_topics <- function(topicsByDocDate, minGamma = 0) {
   n_ranks <- 3
 
   primary_topic_stats <- topicsByDocDate %>%
-    dplyr::filter(gamma >= minGamma) %>%
-    dplyr::group_by(document) %>%
-    dplyr::mutate(topic_doc_rank = rank(desc(gamma))) %>%
+    dplyr::filter(.data$gamma >= minGamma) %>%
+    dplyr::group_by(.data$document) %>%
+    dplyr::mutate(topic_doc_rank = rank(dplyr::desc(.data$gamma))) %>%
     dplyr::ungroup() %>%
-    dplyr::filter(topic_doc_rank <= n_ranks) %>%
-    dplyr::group_by(topic_id, topic_doc_rank) %>%
-    dplyr::summarise(mean_gamma =  mean(gamma),
-                     n_docs = n()) %>%
+    dplyr::filter(.data$topic_doc_rank <= n_ranks) %>%
+    dplyr::group_by(.data$topic_id, .data$topic_doc_rank) %>%
+    dplyr::summarise(mean_gamma =  mean(.data$gamma),
+                     n_docs = dplyr::n()) %>%
     dplyr::ungroup() %>%
-    tidyr::pivot_wider(names_from = topic_doc_rank,
-                       values_from = c(n_docs, mean_gamma)) %>%
-    dplyr::arrange(-n_docs_1) %>%
-    replace(is.na(.), 0)
+    tidyr::pivot_wider(names_from = .data$topic_doc_rank,
+                       values_from = c(.data$n_docs, .data$mean_gamma)) %>%
+    dplyr::arrange(-.data$n_docs_1) %>%
+    replace(is.na(.data), 0)
 
   return(primary_topic_stats)
 }
@@ -281,7 +281,12 @@ topic_frequencies <- function(topicsByDocDate, timeBinUnit = "week",
 #'   \item{most_volatile}{select topics with the largest change throughout the
 #'   covered time period; internally this is measured by the residual standard
 #'   deviation of the linear model fit to a \code{topic_id}'s time frequency
-#'   series.} }
+#'   series.} \item{topic_id}{select topics specified by \code{topic_id} in the
+#'   function argument \code{selectTopics}.}}
+#'
+#' @param selectTopics a vector of topic IDs by which the returned results
+#'   should be filtered; this option is only considered when the option
+#'   \emph{"topic_id"} is chosen for \code{selectBy}.
 #'
 #' @return a dataframe specifying topic metrics employed for selecting top
 #'   \code{topic}s, where: \describe{ \item{topic_id}{a unique topic identifier}
@@ -340,7 +345,7 @@ select_top_topics <- function(topicFrequencies, topN = 25,
     top_n_topics <- dplyr::arrange(top_n_topics, .data$slope)
   } else if(selectBy == "topic_id") {
     top_n_topics <- top_n_topics %>%
-      dplyr::filter(topic_id %in% selectTopics)
+      dplyr::filter(.data$topic_id %in% selectTopics)
   }
 
   top_n_topics <- dplyr::slice(top_n_topics, 1:topN)

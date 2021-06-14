@@ -8,6 +8,6 @@
 Visualization}
 \description{
 The package provides functions to analyse and visualize the results of an
-\code{\link[stm:stm]{stm}} topic model, including a Shiny application for topic
+[`stm`][stm::stm()] topic model, including a Shiny application for topic
 model exploration.
 }

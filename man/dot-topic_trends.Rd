@@ -17,16 +17,16 @@ the trend is categorized as \emph{"constant"}}
 }
 \value{
 a dataframe specifying trend metrics for each \code{topic}, where:
-\describe{ \item{topic_id}{a topic identifier} \item{slope}{the slope
-coefficient of the linear model fit to this \code{topic}'s time frequency
-series} \item{volatility}{the residual standard deviation of the linear
-model fit to this \code{topic}'s time frequency series, which is used as a
-basic measure of volatility of topic frequencies} \item{trend}{a
-categorisation of the topic frequency trend, negative slopes with an
-intercept \code{> mean topic share + trendThreshold} are interpreted as
-\emph{decreasing}, positive slopes with an intercept \code{< mean topic
+  \describe{ \item{topic_id}{a topic identifier} \item{slope}{the slope
+  coefficient of the linear model fit to this \code{topic}'s time frequency
+  series} \item{volatility}{the residual standard deviation of the linear
+  model fit to this \code{topic}'s time frequency series, which is used as a
+  basic measure of volatility of topic frequencies} \item{trend}{a
+  categorisation of the topic frequency trend, negative slopes with an
+  intercept \code{> mean topic share + trendThreshold} are interpreted as
+  \emph{decreasing}, positive slopes with an intercept \code{< mean topic
   share - trendThreshold} as \emph{increasing}, all others as
-\emph{constant}} }
+  \emph{constant}} }
 }
 \description{
 \code{.topic_trends} takes a dataframe with a topic frequency time series as

@@ -30,23 +30,23 @@ this threshold will not be included in the returned results.}
 }
 \value{
 a dataframe with term frequencies by chosen timebin, where:
-\describe{ \item{term}{a term as provided as an input in
-\code{termsByDate}} \item{timebin}{the first day of the a timebin; if
-\code{timeBinUnit} was set to \code{week}, this date will always be a
-Monday} \item{n_term_per_timebin}{the number of occurrences of \code{term}
-in \code{timebin}} \item{first_occur}{the exact date of the first
-occurrence of \code{term} across the whole time range covered by
-\code{timebin}s} \item{latest_occur}{the exact date of the latest
-occurrence of \code{term} across the whole time range covered by
-\code{timebin}s; note that this date can be larger than the maximum
-\code{timebin}, as \code{timebin} specifies the floor date of a time unit}
-\item{term_share_per_timebin}{the share of \code{term} in a given
-\code{timebin} with respect to all other term occurrences in a
-\code{timebin}; \strong{NOTE} that this is computed in consideration of all
-terms, including those that may be filtered out of the results}
-\item{n_term_total}{the total number of occurrences in the dataset, i.e.
-across all \code{timebin}s} \item{n_term_timebins}{the number of unique
-\code{timebin}s in which an occurrence of \code{term} was recorded} }
+  \describe{ \item{term}{a term as provided as an input in
+  \code{termsByDate}} \item{timebin}{the first day of the a timebin; if
+  \code{timeBinUnit} was set to \code{week}, this date will always be a
+  Monday} \item{n_term_per_timebin}{the number of occurrences of \code{term}
+  in \code{timebin}} \item{first_occur}{the exact date of the first
+  occurrence of \code{term} across the whole time range covered by
+  \code{timebin}s} \item{latest_occur}{the exact date of the latest
+  occurrence of \code{term} across the whole time range covered by
+  \code{timebin}s; note that this date can be larger than the maximum
+  \code{timebin}, as \code{timebin} specifies the floor date of a time unit}
+  \item{term_share_per_timebin}{the share of \code{term} in a given
+  \code{timebin} with respect to all other term occurrences in a
+  \code{timebin}; \strong{NOTE} that this is computed in consideration of all
+  terms, including those that may be filtered out of the results}
+  \item{n_term_total}{the total number of occurrences in the dataset, i.e.
+  across all \code{timebin}s} \item{n_term_timebins}{the number of unique
+  \code{timebin}s in which an occurrence of \code{term} was recorded} }
 }
 \description{
 \code{term_frequencies} summarizes the counts and relative frequency of terms

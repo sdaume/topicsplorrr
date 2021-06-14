@@ -20,9 +20,9 @@ details)}
 }
 \value{
 a dataframe with topics by ID and a selection of associated topic
-terms, where: \describe{ \item{topic_id}{a numeric identifier of a topic}
-\item{topic_label}{a character sequence of frequent and exclusive terms
-associated with a topic}}
+  terms, where: \describe{ \item{topic_id}{a numeric identifier of a topic}
+  \item{topic_label}{a character sequence of frequent and exclusive terms
+  associated with a topic}}
 }
 \description{
 The primary purpose of \code{topics_terms_map} is to provide an association
