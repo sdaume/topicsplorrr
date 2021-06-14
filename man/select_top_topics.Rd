@@ -5,7 +5,7 @@
 \title{Select top topics by document counts or temporal trend metric}
 \usage{
 select_top_topics(topicFrequencies, topN = 25,
-  selectBy = "most_frequent")
+  selectBy = "most_frequent", selectTopics = NULL)
 }
 \arguments{
 \item{topicFrequencies}{a dataframe of \emph{topic} frequencies as returned

@@ -7,7 +7,7 @@
 plot_topic_frequencies(topicsByDocDate, topicLabels = NULL,
   timeBinUnit = "week", topN = 25, minTopicTimeBins = 0.5,
   minGamma = 0.01, selectTopicsBy = "most_frequent",
-  verboseLabels = FALSE, nCols = 5)
+  selectTopics = NULL, verboseLabels = FALSE, nCols = 5)
 }
 \arguments{
 \item{topicsByDocDate}{a dataframe as returned by

@@ -295,11 +295,12 @@ topic_frequencies <- function(topicsByDocDate, timeBinUnit = "week",
 #' @export
 #'
 select_top_topics <- function(topicFrequencies, topN = 25,
-                              selectBy = "most_frequent") {
+                              selectBy = "most_frequent",
+                              selectTopics = NULL) {
 
   # check selection options
   validSelectByOptions <- c("most_frequent", "trending", "trending_up",
-                            "trending_down", "most_volatile")
+                            "trending_down", "most_volatile", "topic_id")
 
   if (!(selectBy %in% validSelectByOptions)) {
     stop("'", selectBy, "' is not a valid option for selectBy. ",
@@ -337,6 +338,9 @@ select_top_topics <- function(topicFrequencies, topN = 25,
     top_n_topics <- dplyr::arrange(top_n_topics, -.data$slope)
   } else if(selectBy == "trending_down") {
     top_n_topics <- dplyr::arrange(top_n_topics, .data$slope)
+  } else if(selectBy == "topic_id") {
+    top_n_topics <- top_n_topics %>%
+      dplyr::filter(topic_id %in% selectTopics)
   }
 
   top_n_topics <- dplyr::slice(top_n_topics, 1:topN)

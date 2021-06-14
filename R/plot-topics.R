@@ -250,6 +250,7 @@ plot_topic_frequencies <- function(topicsByDocDate, topicLabels = NULL,
                                    timeBinUnit = "week", topN = 25,
                                    minTopicTimeBins = 0.5, minGamma = 0.01,
                                    selectTopicsBy = "most_frequent",
+                                   selectTopics = NULL,
                                    verboseLabels = FALSE, nCols = 5) {
 
   # candidates for additional arguments
@@ -280,7 +281,8 @@ plot_topic_frequencies <- function(topicsByDocDate, topicLabels = NULL,
 
   # select the topics that will be plotted
   top_n_topic_selection <- select_top_topics(topic_freqs, topN = topN,
-                                             selectBy = selectTopicsBy)
+                                             selectBy = selectTopicsBy,
+                                             selectTopics = selectTopics)
 
   # here we merge the frequencies with the term-to-token map (used for
   # labelling) and we change the ordering of the terms in order to force
