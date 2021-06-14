@@ -91,7 +91,7 @@ The variation of term shares over time can be the next step in exploring the bas
 The code below utilizes the package's `plot_term_frequencies()` function. A linear trend line is added as a simple visual aid to distinguish terms with increasing, decreasing or stable trends. The example shows monthly shares of *bigrams* and demonstrates some additional options such as specifying additional stop words (here the most common terms in the preprint titles).
 
 
-```{r, echo=TRUE, fig.width=7, fig.height=7, dpi=200}
+```{r, eval=FALSE, echo=TRUE, fig.width=7, fig.height=7, dpi=200}
 library(topicsplorrr)
 
 terms_by_date(textData = sample_docs,
