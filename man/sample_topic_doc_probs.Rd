@@ -3,7 +3,7 @@
 \docType{data}
 \name{sample_topic_doc_probs}
 \alias{sample_topic_doc_probs}
-\title{Per-document topic probabilities for the `covid19preprints` topics}
+\title{Per-document topic probabilities for the sample topics}
 \format{a dataframe with 4 variables: \describe{ \item{document}{a unique
   document identifier, here a combination of president and year of speech}
   \item{occur}{the (assumed) date of \code{document} (i.e. speech) as a Date
@@ -17,7 +17,7 @@ sample_topic_doc_probs
 \description{
 This package data set summarizes the per document topic probabilities
 according to the \code{\link[stm:stm]{stm}} topic model
-\code{\link{sample_topics}} fit to the inaugural presidential speeches in the
+\code{sample_topics} fit to the inaugural presidential speeches in the
 respective dataset included in the \emph{quanteda} package
 (\code{\link[quanteda:data_corpus_inaugural]{quanteda::data_corpus_inaugural}}).
 }

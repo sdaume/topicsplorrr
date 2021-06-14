@@ -1,7 +1,7 @@
 #' Document-feature-matrix of the inaugural presidential speeches
 #'
 #' This package data provides the document-feature-matrix (DFM) used to fit the
-#' \code{\link[stm:stm]{stm}} topic model \code{\link{sample_topics}}. The DFM
+#' \code{\link[stm:stm]{stm}} topic model \code{sample_topics} The DFM
 #' is based on the inaugural presidential speeches in the respective dataset
 #' included in the \emph{quanteda} package
 #' (\code{\link[quanteda:data_corpus_inaugural]{quanteda::data_corpus_inaugural}}),
@@ -14,10 +14,10 @@
 "sample_dfm"
 
 
-#' A STM topic model of the 'covid19preprints' preprint abstracts
+#' A STM topic model of the inaugural presidential speeches
 #'
 #' This package dataset is a \code{\link[stm:stm]{stm}} topic model for the
-#' \code{\link{sample_dfm}} with 25 topics; it was fit to the inaugural
+#' \code{sample_dfm} with 25 topics; it was fit to the inaugural
 #' presidential speeches in the respective dataset included in the
 #' \emph{quanteda} package
 #' (\code{\link[quanteda:data_corpus_inaugural]{quanteda::data_corpus_inaugural}}).
@@ -32,11 +32,11 @@
 
 
 
-#' Per-document topic probabilities for the `covid19preprints` topics
+#' Per-document topic probabilities for the sample topics
 #'
 #' This package data set summarizes the per document topic probabilities
 #' according to the \code{\link[stm:stm]{stm}} topic model
-#' \code{\link{sample_topics}} fit to the inaugural presidential speeches in the
+#' \code{sample_topics} fit to the inaugural presidential speeches in the
 #' respective dataset included in the \emph{quanteda} package
 #' (\code{\link[quanteda:data_corpus_inaugural]{quanteda::data_corpus_inaugural}}).
 #'

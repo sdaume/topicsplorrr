@@ -26,7 +26,6 @@ Imports:
     ggplot2,
     stats,
     lubridate,
-    quanteda,
     scales,
     rlang,
     tibble,
@@ -36,8 +35,10 @@ Suggests:
     rmarkdown,
     kableExtra,
     DT,
+    quanteda,
     markdown,
-    extrafont
+    extrafont,
+    tufte
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)

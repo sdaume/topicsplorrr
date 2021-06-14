@@ -3,14 +3,14 @@
 \docType{data}
 \name{sample_topics}
 \alias{sample_topics}
-\title{A STM topic model of the 'covid19preprints' preprint abstracts}
+\title{A STM topic model of the inaugural presidential speeches}
 \format{a \code{\link[stm:stm]{stm}} object}
 \usage{
 sample_topics
 }
 \description{
 This package dataset is a \code{\link[stm:stm]{stm}} topic model for the
-\code{\link{sample_dfm}} with 25 topics; it was fit to the inaugural
+\code{sample_dfm} with 25 topics; it was fit to the inaugural
 presidential speeches in the respective dataset included in the
 \emph{quanteda} package
 (\code{\link[quanteda:data_corpus_inaugural]{quanteda::data_corpus_inaugural}}).
