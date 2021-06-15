@@ -11,6 +11,8 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R-CMD-check](https://github.com/sdaume/topicsplorrr/workflows/R-CMD-check/badge.svg)](https://github.com/sdaume/topicsplorrr/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/sdaume/topicsplorrr/branch/master/graph/badge.svg)](https://codecov.io/gh/sdaume/topicsplorrr?branch=master)
 <!-- badges: end -->
 
 The package provides functions to analyse and visualize the results of
